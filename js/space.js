@@ -1,31 +1,56 @@
 const canvas = document.getElementById("space");
 const ctx = canvas.getContext("2d");
 
+/* ============================================================
+   FUNCIÓN QUE USA VISUAL VIEWPORT (MEJOR QUE innerHeight)
+   ============================================================ */
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  const vw = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+  const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+  canvas.width = vw;
+  canvas.height = vh;
 }
+
+/* Primera ejecución */
 resizeCanvas();
-window.addEventListener("resize", () => {
+
+/* Redimensionar correctamente en móviles */
+window.visualViewport?.addEventListener("resize", () => {
   resizeCanvas();
   updateSettings();
 });
 
-// ===== Detectar móvil con orientación =====
+window.addEventListener("orientationchange", () => {
+  setTimeout(() => {
+    resizeCanvas();
+    updateSettings();
+  }, 150);
+});
+
+/* ============================================================
+   DETECTAR DISPOSITIVOS MÓVILES Y ORIENTACIÓN
+   ============================================================ */
 function getSettings() {
-  if (window.matchMedia("(orientation: portrait) and (any-pointer: coarse)").matches) {
-    return { stars: 70, meteors: 2 }; // 📱 Móvil vertical
-  } else if (window.matchMedia("(orientation: landscape) and (any-pointer: coarse)").matches) {
-    return { stars: 90, meteors: 3 }; // 📱 Móvil horizontal
-  } else {
-    return { stars: 120, meteors: Math.floor(window.innerWidth / 300) }; // Escritorio/tablet
-  }
+  const isMobile = matchMedia("(any-pointer: coarse)").matches;
+  const isPortrait = matchMedia("(orientation: portrait)").matches;
+
+  if (isMobile && isPortrait)
+    return { stars: 70, meteors: 2 };      // 📱 Móvil Vertical
+
+  if (isMobile && !isPortrait)
+    return { stars: 90, meteors: 3 };      // 📱 Móvil Horizontal
+
+  return { stars: 120, meteors: Math.floor(canvas.width / 300) }; // 🖥 Escritorio/Tablet
 }
 
 let settings = getSettings();
 
-// ===== Estrellas fijas =====
+/* ============================================================
+   ESTRELLAS
+   ============================================================ */
 let stars = [];
+
 function generateStars() {
   stars = [];
   for (let i = 0; i < settings.stars; i++) {
@@ -38,35 +63,39 @@ function generateStars() {
   }
 }
 
-// ===== Meteoros =====
+/* ============================================================
+   METEOROS
+   ============================================================ */
 class Meteor {
   constructor() {
     this.reset(true);
   }
+
   reset(initial = false) {
     this.x = Math.random() * canvas.width;
     this.y = initial ? Math.random() * canvas.height : -20;
     this.size = Math.random() * 3 + 2;
     this.speed = Math.random() * 2 + 1.5;
-    this.angle = Math.PI / (3 + Math.random()); // ángulo variado
+    this.angle = Math.PI / (3 + Math.random());
     this.trail = [];
     this.maxTrail = Math.floor(Math.random() * 8) + 6;
   }
+
   update() {
     const dx = Math.cos(this.angle) * this.speed;
     const dy = Math.sin(this.angle) * this.speed;
+
     this.x += dx;
     this.y += dy;
 
     this.trail.unshift({ x: this.x, y: this.y });
-    if (this.trail.length > this.maxTrail) {
-      this.trail.pop();
-    }
+    if (this.trail.length > this.maxTrail) this.trail.pop();
 
     if (this.x > canvas.width + 50 || this.y > canvas.height + 50) {
       this.reset();
     }
   }
+
   draw() {
     for (let i = 0; i < this.trail.length; i++) {
       const t = this.trail[i];
@@ -94,38 +123,36 @@ function generateMeteors() {
   }
 }
 
+/* ============================================================
+   ACTUALIZAR CONFIGURACIÓN
+   ============================================================ */
 function updateSettings() {
   settings = getSettings();
   generateStars();
   generateMeteors();
 }
 
-// Generar al inicio
+/* Inicializar */
 updateSettings();
 
-// ===== Escuchar cambios de orientación en móviles =====
-const portraitQuery = window.matchMedia("(orientation: portrait) and (any-pointer: coarse)");
-const landscapeQuery = window.matchMedia("(orientation: landscape) and (any-pointer: coarse)");
-
-function orientationChange() {
-  updateSettings();
-}
-
-portraitQuery.addEventListener("change", orientationChange);
-landscapeQuery.addEventListener("change", orientationChange);
-
-// ===== Dibujar estrellas =====
+/* ============================================================
+   DIBUJAR ESTRELLAS
+   ============================================================ */
 function drawStars() {
   for (let star of stars) {
     ctx.fillStyle = "white";
     ctx.shadowColor = "white";
     ctx.shadowBlur = 6 * star.glow;
+
     ctx.fillRect(Math.floor(star.x), Math.floor(star.y), star.size, star.size);
+
     star.glow = 0.5 + Math.sin(Date.now() * 0.002 + star.x) * 0.5;
   }
 }
 
-// ===== Animación =====
+/* ============================================================
+   LOOP DE ANIMACIÓN
+   ============================================================ */
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
