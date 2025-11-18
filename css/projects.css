@@ -1,28 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* ====== RESETEO Y BASE ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Press Start 2P", cursive;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 /* ====== BODY ====== */
 body {
   background: #0a0a0a;
   color: white;
   width: 100%;
-  min-height: 100dvh; /* ⬅ CAMBIO: antes era height */
+  min-height: 100dvh; /* ⬅ Corrección final para móviles */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  overscroll-behavior: none;
+  overscroll-behavior: none; /* Evita scroll fantasma */
 }
 
-/* ====== HOME ====== */
+/* ====== CANVAS DE FONDO ====== */
+#space {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background: #000;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* ====== HEADER Y NAVEGACIÓN ====== */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: #44da31;
+  border-bottom: 2px solid #44da31;
+}
+
+/* ====== SECCIÓN PRINCIPAL ====== */
 .home {
-  flex: 1; /* ⬅ AHORA controla la altura real */
+  flex: 1; /* ⬅ Maneja la altura restante correctamente */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   width: 100%;
-  min-height: auto; /* ⬅ YA NO usamos calc() que causa problemas */
+  min-height: auto; /* ⬅ ya no usamos cálculos */
   overflow: hidden;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  text-align: center;
+  font-size: 10px;
+  width: 100%;
+  max-width: 100dvw;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 /* ====== RESPONSIVE ====== */
@@ -32,7 +114,7 @@ body {
   }
 
   nav a {
-    font-size: 11px; /* ⬅ Ajuste ligero para móviles */
+    font-size: 11px;
     padding: 0.5rem 0.8rem;
   }
 
@@ -45,7 +127,6 @@ body {
   }
 }
 
-/* ⬅ LANDSCAPE */
 @media (max-width: 768px) and (orientation: landscape) {
   header {
     padding: 0.5rem 0;
@@ -65,7 +146,6 @@ body {
   }
 }
 
-/* Móviles muy pequeños */
 @media (max-width: 480px) {
   nav a {
     font-size: 12px;
