@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+  <!-- Fondo animado -->
+  <canvas id="space"></canvas>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#"></a></li>
+      </ul>
+      <div style="position: absolute; top: -5px; right: 5px;">
+        <audio id="miAudio" src="assets/audio/cancion.mp3" preload="auto"></audio>
+
+        <!-- Botón de nota musical -->
+        <button id="audioToggle" class="pixel-btn" aria-pressed="false" aria-label="Activar música">♪</button>
+
+        <input type="range" id="controlVolumen" min="0" max="100" value="0">
+      </div>
+
+  </header>
+
+  <main id="main-content">
+    <div class="title-section">
+      <div id="bit" class="binary-title">GravitonByte</div>
+      <div id="bit3" class="binary-title">FULL STACK</div>
+      <div id="bit2" class="binary-title">Developer</div>
+    </div>
+
+    <div class="grid-section">
+      <div class="left-column">
+        <img id="nave" src="assets/img/nave.gif" alt="Nave animada" />
+      </div>
+
+      <div class="center-column">
+        <div class="selectors">
+          <div class="fondo">
+            <div class="about" onclick="return false;">
+              <a id="about-link" href="about.html">
+                <i class="fa fa-caret-right" aria-hidden="true"></i>Sobre mí
+              </a>
+            </div>
+            <div class="skills" onclick="return false;">
+              <a id="skills-link" href="skills.html">
+                <i class="fa fa-caret-right" aria-hidden="true"></i>Habilidades
+              </a>
+            </div>
+            <div class="projects" onclick="return false;">
+              <a id="projects-link" href="projects.html">
+                <i class="fa fa-caret-right" aria-hidden="true"></i>Proyectos
+              </a>
+            </div>
+            <div class="contact" onclick="return false;">
+              <a id="contact-link" href="contact.html">
+                <i class="fa fa-caret-right" aria-hidden="true"></i>Contacto
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="guy">
+          <img id="building" src="assets/icons/building.svg" alt="Edificio animado" />
+          <img id="guy" src="assets/icons/guy.png" alt="Personaje animado" />
+          <img id="guy2" src="assets/icons/guy2.png" alt="Personaje animado 2" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GravitonByte</p>
+  </footer>
+
+  <!-- Archivos JavaScript -->
+  <script src="js/index.js"></script>
+  <script src="js/space.js"></script>
+</body>
+
+</html>

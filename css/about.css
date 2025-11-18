@@ -1,0 +1,561 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Press Start 2P", cursive;
+    background: #0a0a0a;
+    color: white;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Fondo animado */
+canvas#warpCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+    background: black;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    font-size: 12px;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+    font-family: "Press Start 2P", cursive;
+}
+
+nav a:hover,
+nav a.active {
+    color: #44da31;
+    border-bottom: 2px solid #44da31;
+}
+
+/* === SECCIÓN HOME === */
+section {
+    min-height: 100vh;
+    padding: 5rem 9% 5rem;
+    flex: 1;
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+    background: transparent;
+    position: relative;
+    z-index: 10;
+    min-height: calc(100vh - 120px);
+}
+
+.home .home-content h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: 'Poppins', sans-serif;
+}
+
+span {
+    color: #44da31;
+}
+
+.home-content h3 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-content p {
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-img {
+    border-radius: 50%;
+}
+
+.home-img img {
+    position: relative;
+    width: 32vw;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #44da31;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.home-img img:hover {
+    transform: scale(1.07);
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    border: 0.2rem solid #44da31;
+    font-size: 2rem;
+    border-radius: 50%;
+    margin: 3rem 1.5rem 3rem 0;
+    transition: 0.3s ease;
+    color: #44da31;
+}
+
+.social-icons a:hover {
+    color: black;
+    transform: scale(1.3) translateY(-5px);
+    background-color: #44da31;
+    box-shadow: 0 0 25px #44da31;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #44da31;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #44da31;
+    transition: 0.3s ease;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+    background-color: #44da31;
+    color: black;
+    box-shadow: 0 0 25px #44da31;
+}
+
+/* === Texto animado con cursor === */
+.typing-text {
+    font-size: 3.4rem;
+    font-weight: 600;
+    min-width: 280px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.typing-text span {
+    position: relative;
+    display: inline-block;
+    padding-right: 0.6rem;
+}
+
+/* Palabras animadas */
+.typing-text span::before {
+    content: "Desarrollador Web";
+    color: #44da31;
+    animation: words 20s infinite steps(1);
+    display: inline-block;
+}
+
+/* Cursor al final */
+.typing-text span::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -8px;
+    width: 0;
+    height: 100%;
+    border-left: 3px solid #44da31;
+    background: transparent;
+    animation: blink 0.8s steps(1) infinite;
+}
+
+/* Parpadeo del cursor */
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    50.01%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Palabras que cambian */
+@keyframes words {
+    0%, 20% {
+        content: "Desarrollador Web.";
+    }
+    21%, 40% {
+        content: "Diseñador Web.";
+    }
+    41%, 60% {
+        content: "Analista de Sistemas.";
+    }
+    61%, 80% {
+        content: "Técnico.";
+    }
+    81%, 100% {
+        content: "Ingeniero.";
+    }
+}
+
+/* === FOOTER === */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    font-size: 10px;
+    width: 100%;
+    flex-shrink: 0;
+    color: #fff;
+    z-index: 100;
+    font-family: "Press Start 2P", cursive;
+}
+
+.pixel-art {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* === MEDIA QUERIES GENERALES === */
+@media (max-width: 1000px) {
+    .home {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 995px) {
+    .home {
+        flex-direction: column;
+        margin: 5rem 4rem;
+    }
+
+    .home .home-content h3 {
+        font-size: 2.5rem;
+    }
+
+    .home-content h1 {
+        font-size: 5rem;
+    }
+
+    .home-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+    
+    /* Navegación móvil */
+    nav {
+        position: absolute;
+        display: none;
+        top: 100%;
+        right: 0;
+        width: 60%;
+        border-left: 3px solid #44da31;
+        border-bottom: 3px solid #44da31;
+        border-bottom-left-radius: 2rem;
+        padding: 2rem;
+        background-color: #161616;
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+    }
+
+    nav.active {
+        display: block;
+    }
+
+    nav a {
+        display: block;
+        font-size: 2rem;
+        margin: 2.5rem 0;
+        text-align: center;
+    }
+
+    nav a:hover,
+    nav a.active {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-bottom: 0.5rem solid #44da31;
+    }
+}
+
+/* === MEDIA QUERIES PARA MÓVILES TÁCTILES === */
+
+/* Portrait - móviles vertical */
+@media (orientation: portrait) and (any-pointer: coarse) {
+    header {
+        padding: 1rem 5%;
+    }
+    
+    .logo {
+        font-size: 2.5rem;
+    }
+    
+    section {
+        padding: 8rem 5% 5rem;
+        min-height: 100vh;
+    }
+    
+    .home {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+    
+    .home .home-content h1 {
+        font-size: 4.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    
+    .home-content h3 {
+        font-size: 2.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .home-content p {
+        font-size: 1.6rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+    
+    .home-img img {
+        width: 65vw;
+        max-width: 280px;
+        margin: 2rem 0;
+    }
+    
+    .typing-text {
+        font-size: 2.4rem;
+        min-width: 250px;
+        margin: 1rem 0;
+    }
+    
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .social-icons a {
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 2rem;
+        margin: 0.5rem;
+    }
+    
+    .btn {
+        padding: 1.2rem 3rem;
+        font-size: 1.6rem;
+        margin: 1rem 0;
+    }
+    
+    nav a {
+        font-size: 8px;
+        margin: 0 8px;
+    }
+    
+    /* Desactivar efectos hover en móviles */
+    .home-img img:hover {
+        transform: none;
+    }
+    
+    .social-icons a:hover {
+        transform: none;
+        background-color: transparent;
+        box-shadow: none;
+        color: #44da31;
+    }
+    
+    .btn:hover {
+        transform: none;
+        background-color: black;
+        color: #44da31;
+        box-shadow: none;
+    }
+}
+
+/* Landscape - móviles horizontal */
+@media (orientation: landscape) and (any-pointer: coarse) {
+    header {
+        padding: 0.8rem 5%;
+    }
+    
+    .logo {
+        font-size: 2.2rem;
+    }
+    
+    nav a {
+        font-size: 1.5rem;
+        margin-left: 2rem;
+    }
+    
+    section {
+        padding: 6rem 5% 3rem;
+        min-height: auto;
+    }
+    
+    .home {
+        gap: 4rem;
+        align-items: center;
+        min-height: 80vh;
+    }
+    
+    .home .home-content h1 {
+        font-size: 3.8rem;
+    }
+    
+    .home-content h3 {
+        font-size: 2.4rem;
+    }
+    
+    .home-content p {
+        font-size: 1.4rem;
+    }
+    
+    .home-img img {
+        width: 28vw;
+        min-width: 150px;
+        max-width: 200px;
+    }
+    
+    .typing-text {
+        font-size: 2rem;
+        min-width: 220px;
+    }
+    
+    .social-icons a {
+        width: 3.8rem;
+        height: 3.8rem;
+        font-size: 1.8rem;
+        margin: 2rem 1rem 2rem 0;
+    }
+    
+    .btn {
+        padding: 0.9rem 2.4rem;
+        font-size: 1.4rem;
+    }
+    
+    /* Desactivar efectos hover en móviles */
+    .home-img img:hover {
+        transform: none;
+    }
+    
+    .social-icons a:hover {
+        transform: none;
+        background-color: transparent;
+        box-shadow: none;
+        color: #44da31;
+    }
+    
+    .btn:hover {
+        transform: none;
+        background-color: black;
+        color: #44da31;
+        box-shadow: none;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 480px) and (any-pointer: coarse) {
+    .home .home-content h1 {
+        font-size: 3.8rem;
+    }
+    
+    .home-content h3 {
+        font-size: 2.2rem;
+    }
+    
+    .typing-text {
+        font-size: 2rem;
+    }
+    
+    .home-content p {
+        font-size: 1.4rem;
+    }
+    
+    .home-img img {
+        width: 75vw;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (any-pointer: coarse) {
+    .home {
+        gap: 6rem;
+    }
+    
+    .home .home-content h1 {
+        font-size: 5rem;
+    }
+    
+    .home-content h3 {
+        font-size: 3.2rem;
+    }
+    
+    .home-img img {
+        width: 40vw;
+    }
+    
+    footer {
+        font-size: 1.8rem;
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .typing-text span::before,
+    .typing-text span::after {
+        animation: none;
+    }
+    
+    .typing-text span::before {
+        content: "Desarrollador Web";
+    }
+    
+    .typing-text span::after {
+        display: none;
+    }
+}

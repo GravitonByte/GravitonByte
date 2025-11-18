@@ -1,0 +1,543 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: "Press Start 2P", cursive;
+  color: #44da31;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  overflow-x: hidden;
+  background-image: url("../assets/img/fondo.png");
+  background-size: cover;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+      /* Efecto pixelado */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: crisp-edges; /* Navegadores estándar */
+  -ms-interpolation-mode: nearest-neighbor; /* IE antiguo */
+}
+
+/* Canvas al fondo */
+#space {
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* siempre detrás */
+}
+
+header {
+  color: #fff;
+  width: 100%;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.title-section {
+  width: 100%;
+}
+
+.grid-section {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+
+.left-column,
+.center-column,
+.right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  color: #fff;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 100;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
+    1.5px 1.5px 0 #000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 15px;
+}
+
+.binary-title {
+  font-size: 3.5vw;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 0.5s, transform 0.5s;
+  animation: neonFlicker 2s infinite alternate;
+}
+
+/* Animación de parpadeo para los títulos */
+@keyframes neonFlicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: 0 0 2px yellow, 0 0 4px yellow, 0 0 5px yellow, 0 0 6px yellow;
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
+.binary-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.binary-title span {
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+}
+
+#bit3 {
+  font-size: 1.5vw;
+}
+
+.guy {
+  position: fixed;
+  bottom: 1vw;
+  right: 1vw;
+  height: auto;
+}
+
+#building {
+  width: 30vw;
+  position: absolute;
+  bottom: -1vw;
+  right: 1vw;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+
+  /* Efecto pixelado */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: crisp-edges; /* Navegadores estándar */
+  -ms-interpolation-mode: nearest-neighbor; /* IE antiguo */
+}
+
+#guy,
+#guy2 {
+  width: 6vw;
+  position: absolute;
+  bottom: 23vw;
+  right: 12vw;
+  z-index: 1;
+}
+
+#guy2 {
+  animation: wind 0.7s cubic-bezier(1, 0.9, 0.9, 1) infinite;
+}
+
+@keyframes wind {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: left;
+  width: 100%;
+  height: 100%;
+  font-size: 1.8vw;
+  z-index: 50;
+}
+
+.about,
+.skills,
+.projects,
+.contact {
+  margin: 1.7vw 5.5vw;
+  width: auto;
+  color: white;
+  font-family: "Press Start 2P";
+  text-align: left;
+  text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black,
+    1.5px 1.5px 0 black;
+}
+
+/* Estilos para los enlaces - NUEVO */
+.about a,
+.skills a,
+.projects a,
+.contact a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+i {
+  margin-right: 1px;
+  color: transparent;
+  text-shadow: -1.5px -1.5px 0 transparent, 1.5px -1.5px 0 transparent,
+    -1.5px 1.5px 0 transparent, 1.5px 1.5px 0 transparent;
+}
+
+/* Hover modificado para enlaces */
+.about:hover > a,
+.skills:hover > a,
+.projects:hover > a,
+.contact:hover > a {
+  font-weight: bold;
+  color: #ae00ff;
+  cursor: pointer;
+  animation: neonFlicker 4s infinite alternate;
+}
+
+#nave {
+  z-index: 1;
+  width: 12vw;
+  height: 12vw;
+  position: absolute;
+  margin-top: 50vh;
+  left: 10vw;
+  animation: levitar 3s infinite ease-in-out;
+
+    /* Efecto pixelado */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: crisp-edges; /* Navegadores estándar */
+  -ms-interpolation-mode: nearest-neighbor; /* IE antiguo */
+}
+
+@keyframes levitar {
+  0% {
+    top: 0;
+  }
+
+  50% {
+    top: -1.5vw;
+  }
+
+  100% {
+    top: 0;
+  }
+}
+
+@media (orientation: portrait) and (any-pointer: coarse) {
+  body {
+    text-align: center;
+    white-space: normal;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 1px 0;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .binary-title {
+    font-size: 25px !important;
+  }
+
+  #bit3 {
+    font-size: 13px !important;
+  }
+
+  #building {
+    width: 97vw;
+    bottom: -1vw;
+    right: 1vw;
+  }
+
+  #guy,
+  #guy2 {
+    width: 21vw;
+    bottom: 76vw;
+    right: 35vw;
+  }
+
+  footer {
+    font-size: 3.5vw;
+  }
+
+  .selectors {
+    font-size: 3vh;
+    margin-top: 10vh;
+  }
+
+  .fondo {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 110%;
+    padding: 10px;
+  }
+
+  .about,
+  .skills,
+  .projects,
+  .contact {
+    margin: 1vh 0.5vh;
+    /* Reducir el margen entre los elementos */
+    width: 150%;
+    /* Ajustar el ancho según el contenido */
+  }
+
+  /* Hover modificado para móviles - NUEVO */
+  .about:hover > a > i,
+  .skills:hover > a > i,
+  .projects:hover > a > i,
+  .contact:hover > a > i {
+    margin-right: 1vw;
+    font-size: 4.5vh;
+  }
+
+  #nave {
+    width: 20vw;
+    height: 12vh;
+    margin-top: 26vh;
+    left: 8vw;
+  }
+}
+
+@media (orientation: landscape) and (any-pointer: coarse) {
+  .binary-title {
+    font-size: 4vw;
+  }
+
+  #bit3 {
+    font-size: 1.7vw;
+  }
+
+  #building {
+    width: 220px;
+    bottom: -4vw;
+    right: 1vw;
+  }
+
+  #guy,
+  #guy2 {
+    width: 50px;
+    bottom: 21vw;
+    right: 11vw;
+  }
+
+  footer {
+    font-size: 1.5vw;
+  }
+
+  .selectors {
+    font-size: 2vw;
+    margin-top: -15vh;
+    margin-left: 5vw;
+  }
+
+  .about,
+  .skills,
+  .projects,
+  .contact {
+    margin: 1vh 0.5vh;
+    /* Reducir el margen entre los elementos */
+    width: 150%;
+    /* Ajustar el ancho según el contenido */
+  }
+
+  /* Hover modificado para landscape - NUEVO */
+  .about:hover > a > i,
+  .skills:hover > a > i,
+  .projects:hover > a > i,
+  .contact:hover > a > i {
+    margin-right: 0.5vw;
+    font-size: 3vw;
+  }
+
+  #nave {
+    margin-top: 43vh;
+  }
+}
+
+/* Estilos base */
+.bg-show {
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+}
+
+/* Estilos al hacer hover */
+.bg-show:hover {
+  background-color: rgba(0, 255, 0, 0.2);
+  /* Cambia a un fondo verde transparente (ajústalo según tu necesidad) */
+}
+
+/* Estilo base del botón */
+#languageToggle {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #44da31;
+  padding: 7px 7px;
+  font-size: 9px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  font-family: "Press Start 2P";
+}
+
+/* Animación al pasar el cursor sobre el botón */
+#languageToggle:hover {
+  background-color: #44da31;
+  color: #000;
+  animation: neonFlicker 4s infinite alternate;
+}
+
+/* Definición de la animación de fondo */
+@keyframes bgAnimation {
+  0% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: #44da31;
+  }
+}
+
+input[type="range"] {
+  width: 150px;
+}
+
+/* Estilo del slider en modo pixel-art */
+#controlVolumen {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 17px;
+  background: none;
+  border: 1px solid #44da31;
+  image-rendering: pixelated;
+}
+
+/* Botón pixelado */
+#controlVolumen::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background: #44da31;
+  /* border: 1px solid #fff; */
+  image-rendering: pixelated;
+  cursor: pointer;
+}
+
+.pixel-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #44da31;
+  outline: none;
+  padding: 4px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.pixel-btn:hover {
+  color: #9900ff;
+}
+
+.pixel-btn.active {
+  color: #ffd900;
+  animation: blinkJump 1s infinite;
+}
+
+@keyframes blinkJump {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  25% {
+    opacity: 0.6;
+    transform: translateY(-4px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  75% {
+    opacity: 0.6;
+    transform: translateY(-2px);
+  }
+}

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habilidades</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/skills.css" />
+  </head>
+
+  <body>
+    <!-- Fondo animado -->
+    <canvas id="space"></canvas>
+
+    <header>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="about.html">Sobre mí</a>
+        <a href="skills.html" class="active">Habilidades</a>
+        <a href="projects.html">Proyectos</a>
+        <a href="contact.html">Contacto</a>
+      </nav>
+    </header>
+
+    <section class="home">
+      <div class="home-content">
+        <!-- Carrusel de habilidades -->
+        <div class="carousel-container">
+          <div class="nav-btn prev"><i class="fas fa-chevron-left"></i></div>
+          <div class="carousel">
+            <div class="carousel-track">
+              <!-- HTML -->
+              <div class="card" data-skill="95">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">HTML</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-html.png" alt="HTML" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">95%</div>
+                    </div>
+                    <div class="skill-description">
+                      Lenguaje base de toda página web.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CSS -->
+              <div class="card" data-skill="90">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">CSS</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-css.png" alt="CSS" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">90%</div>
+                    </div>
+                    <div class="skill-description">
+                      Da estilo y diseño a las páginas web.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- JavaScript -->
+              <div class="card" data-skill="85">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">JavaScript</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-js.png" alt="JavaScript" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">85%</div>
+                    </div>
+                    <div class="skill-description">
+                      Lenguaje para crear funciones y animaciones interactivas.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- React -->
+              <div class="card" data-skill="80">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">React</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-react.png" alt="React" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">80%</div>
+                    </div>
+                    <div class="skill-description">
+                      Biblioteca para construir interfaces modernas.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Laravel -->
+              <div class="card" data-skill="75">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Laravel</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-laravel.png" alt="Laravel" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">75%</div>
+                    </div>
+                    <div class="skill-description">
+                      Framework PHP para aplicaciones web robustas.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PHP -->
+              <div class="card" data-skill="80">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">PHP</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-php.png" alt="PHP" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">80%</div>
+                    </div>
+                    <div class="skill-description">
+                      Lenguaje del lado del servidor.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MySQL -->
+              <div class="card" data-skill="85">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">MySQL</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-mysql.png" alt="MySQL" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">85%</div>
+                    </div>
+                    <div class="skill-description">
+                      Sistema de gestión de bases de datos SQL.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PostgreSQL -->
+              <div class="card" data-skill="70">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">PostgreSQL</div>
+                    <div class="card-image">
+                      <img
+                        src="assets/icons/icon-postgresql.png"
+                        alt="PostgreSQL"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">70%</div>
+                    </div>
+                    <div class="skill-description">
+                      Base de datos avanzada y de código abierto.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Node.js -->
+              <div class="card" data-skill="75">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Node.js</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-nodejs.png" alt="Node.js" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">75%</div>
+                    </div>
+                    <div class="skill-description">
+                      Entorno de ejecución para JavaScript en el servidor.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TypeScript -->
+              <div class="card" data-skill="70">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">TypeScript</div>
+                    <div class="card-image">
+                      <img
+                        src="assets/icons/icon-typescript.png"
+                        alt="TypeScript"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">70%</div>
+                    </div>
+                    <div class="skill-description">
+                      Superset tipado de JavaScript para código más robusto.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Python -->
+              <div class="card" data-skill="65">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Python</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-python.png" alt="Python" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">65%</div>
+                    </div>
+                    <div class="skill-description">
+                      Lenguaje de propósito general y fácil de aprender.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Firebase -->
+              <div class="card" data-skill="80">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Firebase</div>
+                    <div class="card-image">
+                      <img
+                        src="assets/icons/icon-firebase.png"
+                        alt="Firebase"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">80%</div>
+                    </div>
+                    <div class="skill-description">
+                      Plataforma de Google para desarrollo web y móvil.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Flutter -->
+              <div class="card" data-skill="60">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Flutter</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-flutter.png" alt="Flutter" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">60%</div>
+                    </div>
+                    <div class="skill-description">
+                      Framework para crear apps nativas con un solo código.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Android -->
+              <div class="card" data-skill="70">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Android</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-android.png" alt="Android" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">70%</div>
+                    </div>
+                    <div class="skill-description">
+                      Sistema operativo móvil de Google.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AWS -->
+              <div class="card" data-skill="55">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">AWS</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-aws.png" alt="AWS" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">55%</div>
+                    </div>
+                    <div class="skill-description">
+                      Plataforma de servicios en la nube.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MongoDB -->
+              <div class="card" data-skill="75">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">MongoDB</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-mongodb.png" alt="MongoDB" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">75%</div>
+                    </div>
+                    <div class="skill-description">
+                      Base de datos NoSQL orientada a documentos.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Git -->
+              <div class="card" data-skill="90">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Git</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-git.png" alt="Git" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">90%</div>
+                    </div>
+                    <div class="skill-description">
+                      Sistema de control de versiones distribuido.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GitHub -->
+              <div class="card" data-skill="90">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">GitHub</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-github.png" alt="GitHub" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">90%</div>
+                    </div>
+                    <div class="skill-description">
+                      Plataforma para alojar proyectos y colaborar con Git.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Canva -->
+              <div class="card" data-skill="85">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Canva</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-canva.png" alt="Canva" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">85%</div>
+                    </div>
+                    <div class="skill-description">
+                      Herramienta online de diseño gráfico.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Photoshop -->
+              <div class="card" data-skill="70">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Photoshop</div>
+                    <div class="card-image">
+                      <img
+                        src="assets/icons/icon-photoshop.png"
+                        alt="Photoshop"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">70%</div>
+                    </div>
+                    <div class="skill-description">
+                      Edición profesional de imágenes.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Trello -->
+              <div class="card" data-skill="80">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Trello</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-trello.png" alt="Trello" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">80%</div>
+                    </div>
+                    <div class="skill-description">
+                      Gestión de proyectos y tareas en tableros visuales.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VSCode -->
+              <div class="card" data-skill="95">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">VSCode</div>
+                    <div class="card-image">
+                      <img src="assets/icons/icon-vscode.png" alt="VSCode" />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">95%</div>
+                    </div>
+                    <div class="skill-description">
+                      Editor de código liviano y personalizable.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WordPress -->
+              <div class="card" data-skill="75">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">WordPress</div>
+                    <div class="card-image">
+                      <img
+                        src="assets/icons/icon-wordpress.png"
+                        alt="WordPress"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="progress-container">
+                      <svg class="progress-svg" viewBox="0 0 100 100">
+                        <circle
+                          class="progress-circle-bg"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                        <circle
+                          class="progress-circle"
+                          cx="50"
+                          cy="50"
+                          r="40"
+                        />
+                      </svg>
+                      <div class="progress-text">75%</div>
+                    </div>
+                    <div class="skill-description">
+                      CMS popular para crear sitios y blogs.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-btn next"><i class="fas fa-chevron-right"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="pixel-art">&copy; 2025 GravitonByte</p>
+    </footer>
+
+    <!-- Script del fondo animado -->
+    <script src="js/space.js"></script>
+
+    <!-- Script del carrusel -->
+    <script>
+      const track = document.querySelector(".carousel-track");
+      const cards = Array.from(track.children);
+      const prevButton = document.querySelector(".prev");
+      const nextButton = document.querySelector(".next");
+      let index = 0;
+
+      // Función para actualizar carrusel
+      function updateCarousel() {
+        const gap = 20;
+        const cardWidth = cards[0].offsetWidth;
+        const moveAmount = cardWidth + gap;
+        track.style.transform = `translateX(${-index * moveAmount}px)`;
+        prevButton.classList.toggle("disabled", index === 0);
+        nextButton.classList.toggle(
+          "disabled",
+          index >= cards.length - getCardsToShow()
+        );
+      }
+
+      // Determinar cuántas tarjetas mostrar según el tamaño de pantalla
+      function getCardsToShow() {
+        if (window.innerWidth <= 768) {
+          return 1;
+        } else if (window.innerWidth <= 1024) {
+          return 2;
+        } else {
+          return 3;
+        }
+      }
+
+      // Botones
+      nextButton.addEventListener("click", () => {
+        if (index < cards.length - getCardsToShow()) {
+          index++;
+          updateCarousel();
+        }
+      });
+
+      prevButton.addEventListener("click", () => {
+        if (index > 0) {
+          index--;
+          updateCarousel();
+        }
+      });
+
+      // Flip cards y animar progreso
+      cards.forEach((card) => {
+        const flipCard = () => {
+          cards.forEach((c) => c !== card && c.classList.remove("flipped"));
+          card.classList.toggle("flipped");
+
+          // Animar barra circular al voltear
+          if (card.classList.contains("flipped")) {
+            const skillLevel = parseInt(card.getAttribute("data-skill"));
+            const progressCircle = card.querySelector(".progress-circle");
+            const circumference = 40 * 2 * Math.PI;
+            const offset = circumference - (skillLevel / 100) * circumference;
+
+            // Aplicar animación
+            setTimeout(() => {
+              progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+              progressCircle.style.strokeDashoffset = offset;
+
+              // Cambiar color según el porcentaje
+              if (skillLevel <= 30) {
+                progressCircle.style.stroke = "#ff6b6b";
+              } else if (skillLevel <= 60) {
+                progressCircle.style.stroke = "#feca57";
+              } else {
+                progressCircle.style.stroke = "#44da31";
+              }
+            }, 100);
+          }
+        };
+
+        card.addEventListener("click", flipCard);
+        card.addEventListener("touchstart", (e) => {
+          e.preventDefault();
+          flipCard();
+        });
+      });
+
+      // Redimensionar
+      window.addEventListener("resize", updateCarousel);
+
+      // Inicializar
+      updateCarousel();
+    </script>
+  </body>
+</html>
