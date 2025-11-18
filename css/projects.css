@@ -1,109 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-
-/* ====== RESETEO Y BASE ====== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  font-family: "Press Start 2P", cursive;
-}
-
-html,
-body {
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-html {
-  font-size: 62.5%;
-}
-
+/* ====== BODY ====== */
 body {
   background: #0a0a0a;
   color: white;
   width: 100%;
-  height: 100dvh; /* <-- Corregido para móviles */
+  min-height: 100dvh; /* ⬅ CAMBIO: antes era height */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  overscroll-behavior: none; /* Evita scroll fantasma */
+  overscroll-behavior: none;
 }
 
-/* ====== CANVAS DE FONDO ====== */
-#space {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100dvw; /* <-- Evita desbordes en móviles */
-  height: 100dvh;
-  background: #000;
-  z-index: -1;
-  overflow: hidden;
-}
-
-/* ====== HEADER Y NAVEGACIÓN ====== */
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  width: 100%;
-}
-
-nav {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap; /* ⬅ para que se acomoden como antes */
-  justify-content: center;
-  max-width: 100%;
-}
-
-nav a {
-  color: inherit;
-  text-decoration: none;
-  font-size: 13px; /* ⬅ antes 12px → ahora un poco mayor */
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-}
-
-nav a:hover,
-nav a.active {
-  color: #44da31;
-  border-bottom: 2px solid #44da31;
-}
-
-/* ====== SECCIÓN PRINCIPAL ====== */
+/* ====== HOME ====== */
 .home {
-  flex: 1;
+  flex: 1; /* ⬅ AHORA controla la altura real */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100%;
-  min-height: calc(100dvh - 120px); /* <-- Ajustado para móviles */
-  overflow: hidden;
-}
-
-/* ====== FOOTER ====== */
-footer {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  text-align: center;
-  font-size: 10px;
   width: 100%;
-  max-width: 100dvw; /* <-- Evita desbordes */
+  min-height: auto; /* ⬅ YA NO usamos calc() que causa problemas */
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 /* ====== RESPONSIVE ====== */
@@ -113,12 +32,12 @@ footer {
   }
 
   nav a {
-    font-size: 10px; /* ⬅ antes 8px, ahora más grande */
+    font-size: 11px; /* ⬅ Ajuste ligero para móviles */
     padding: 0.5rem 0.8rem;
   }
+
   .home {
-    min-height: calc(100dvh - 90px);
-    padding: 10px;
+    padding: 12px;
   }
 
   footer {
@@ -126,6 +45,7 @@ footer {
   }
 }
 
+/* ⬅ LANDSCAPE */
 @media (max-width: 768px) and (orientation: landscape) {
   header {
     padding: 0.5rem 0;
@@ -136,7 +56,6 @@ footer {
   }
 
   .home {
-    min-height: calc(100dvh - 70px);
     padding: 8px;
     align-items: flex-start;
   }
@@ -146,8 +65,9 @@ footer {
   }
 }
 
+/* Móviles muy pequeños */
 @media (max-width: 480px) {
   nav a {
-    font-size: 11px;       /* ⬅ mejora en móviles pequeños */
+    font-size: 12px;
   }
 }
