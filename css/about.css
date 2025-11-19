@@ -80,19 +80,21 @@ section {
     flex: 1;
 }
 
-/* HOME */
+/* ======================= */
+/* ====   HOME AREA   ==== */
+/* ======================= */
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8rem;
-    min-height: calc(100dvh - 120px);
-    position: relative;
     width: 100%;
+    min-height: calc(100vh - 120px);
     padding: 20px;
+    position: relative;
 }
 
-/* TEXTOS (usan Poppins) */
+/* TEXTOS POPPINS */
 .home .home-content h1,
 .home-content h3,
 .home-content p,
@@ -127,7 +129,7 @@ span {
     width: 32vw;
     border-radius: 50%;
     box-shadow: 0 0 10px #44da31;
-    transition: 0.2s;
+    transition: 0.2s ease;
     cursor: pointer;
 }
 
@@ -147,7 +149,7 @@ span {
     font-size: 2rem;
     color: #44da31;
     margin-right: 1.5rem;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .social-icons a:hover {
@@ -166,7 +168,7 @@ span {
     font-size: 1.6rem;
     color: #44da31;
     font-weight: 600;
-    transition: 0.3s;
+    transition: 0.3s ease;
     font-family: Poppins, sans-serif;
 }
 
@@ -177,7 +179,7 @@ span {
     box-shadow: 0 0 25px #44da31;
 }
 
-/* ANIMACIÓN TYPING */
+/* TYPING */
 .typing-text {
     font-size: 3.4rem;
     font-weight: 600;
@@ -222,16 +224,27 @@ footer {
     font-family: "Press Start 2P";
 }
 
-/* ============ RESPONSIVE ============ */
+/* ======================= */
+/* ===== RESPONSIVE ====== */
+/* ======================= */
+
 @media (max-width: 995px) {
-    .home { flex-direction: column; gap: 4rem; }
+    .home { 
+        flex-direction: column; 
+        gap: 4rem; 
+        text-align: center;
+    }
     .home-img img { width: 65vw; }
     .home-content h1 { font-size: 5rem; }
     .home-content h3 { font-size: 2.6rem; }
 }
 
-@media (orientation: portrait) and (max-width:600px) {
-    .home { flex-direction: column; text-align: center; gap: 2rem; }
+@media (orientation: portrait) and (max-width: 600px) {
+    .home { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 2rem; 
+    }
     .home-content h1 { font-size: 1.6rem; }
     .home-content h3 { font-size: 1.6rem; }
     .home-content p { font-size: 1.4rem; }
@@ -240,7 +253,7 @@ footer {
     nav a { font-size: 10px; }
 }
 
-@media (max-width:380px) {
+@media (max-width: 380px) {
     .home-content h1 { font-size: 1.6rem; }
     .home-content h3 { font-size: 1.6rem; }
     .typing-text { font-size: 1.4rem; }
