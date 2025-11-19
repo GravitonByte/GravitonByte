@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
+/* ====== RESETEO Y BASE ====== */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +21,7 @@ body {
     background: #0a0a0a;
     color: white;
     width: 100%;
-    height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -28,10 +29,11 @@ body {
     position: relative;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
-/* Fondo animado */
-canvas#warpCanvas {
+/* ====== CANVAS DE FONDO ====== */
+#warpCanvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -42,15 +44,16 @@ canvas#warpCanvas {
     background: black;
 }
 
-/* Header */
+/* ====== HEADER Y NAVEGACIÓN ====== */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    z-index: 10;
 }
 
 nav {
@@ -58,13 +61,14 @@ nav {
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 100%;
 }
 
 nav a {
     color: white;
     font-size: 12px;
     padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
     font-family: "Press Start 2P", cursive;
 }
 
@@ -74,7 +78,7 @@ nav a.active {
     border-bottom: 2px solid #44da31;
 }
 
-/* === SECCIÓN HOME === */
+/* ====== SECCIÓN HOME ====== */
 section {
     min-height: 100vh;
     padding: 5rem 9% 5rem;
@@ -154,28 +158,6 @@ span {
     box-shadow: 0 0 25px #44da31;
 }
 
-.btn {
-    display: inline-block;
-    padding: 1rem 2.8rem;
-    background-color: black;
-    border-radius: 4rem;
-    font-size: 1.6rem;
-    color: #44da31;
-    letter-spacing: 0.3rem;
-    font-weight: 600;
-    border: 2px solid #44da31;
-    transition: 0.3s ease;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-}
-
-.btn:hover {
-    transform: scale(1.03);
-    background-color: #44da31;
-    color: black;
-    box-shadow: 0 0 25px #44da31;
-}
-
 /* === Texto animado con cursor === */
 .typing-text {
     font-size: 3.4rem;
@@ -240,7 +222,7 @@ span {
     }
 }
 
-/* === FOOTER === */
+/* ====== FOOTER ====== */
 footer {
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
@@ -257,7 +239,7 @@ footer {
     font-family: 'Press Start 2P', cursive;
 }
 
-/* === MEDIA QUERIES GENERALES === */
+/* ====== RESPONSIVE ====== */
 @media (max-width: 1000px) {
     .home {
         gap: 4rem;
@@ -279,152 +261,103 @@ footer {
     }
 
     .home-img img {
-        width: 70vw;
+        width: 35vw; /* Reducido de 70vw a 35vw (50%) */
         margin-top: 4rem;
-    }
-    
-    /* Navegación móvil */
-    nav {
-        position: absolute;
-        display: none;
-        top: 100%;
-        right: 0;
-        width: 60%;
-        border-left: 3px solid #44da31;
-        border-bottom: 3px solid #44da31;
-        border-bottom-left-radius: 2rem;
-        padding: 2rem;
-        background-color: #161616;
-        border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
-    }
-
-    nav.active {
-        display: block;
-    }
-
-    nav a {
-        display: block;
-        font-size: 2rem;
-        margin: 2.5rem 0;
-        text-align: center;
-    }
-
-    nav a:hover,
-    nav a.active {
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border-bottom: 0.5rem solid #44da31;
     }
 }
 
-/* === MEDIA QUERIES PARA MÓVILES TÁCTILES === */
-
-/* Portrait - móviles vertical */
-@media (orientation: portrait) and (any-pointer: coarse) {
-    header {
-        padding: 1rem 5%;
-    }
-    
-    .logo {
-        font-size: 2.5rem;
-    }
-    
-    section {
-        padding: 8rem 5% 5rem;
-        min-height: 100vh;
-    }
-    
-    .home {
-        flex-direction: column;
-        gap: 3rem;
-        text-align: center;
-        justify-content: flex-start;
-        padding-top: 2rem;
-    }
-    
-    .home .home-content h1 {
-        font-size: 4.5rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-    }
-    
-    .home-content h3 {
-        font-size: 2.8rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .home-content p {
-        font-size: 1.6rem;
-        line-height: 1.6;
-        margin-bottom: 2rem;
-    }
-    
-    .home-img img {
-        width: 65vw;
-        max-width: 280px;
-        margin: 2rem 0;
-    }
-    
-    .typing-text {
-        font-size: 2.4rem;
-        min-width: 250px;
-        margin: 1rem 0;
-    }
-    
-    .social-icons {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin: 2rem 0;
-    }
-    
-    .social-icons a {
-        width: 4.5rem;
-        height: 4.5rem;
-        font-size: 2rem;
-        margin: 0.5rem;
-    }
-    
-    .btn {
-        padding: 1.2rem 3rem;
-        font-size: 1.6rem;
-        margin: 1rem 0;
-    }
-    
+@media (max-width: 768px) {
     nav a {
-        font-size: 8px;
-        margin: 0 8px;
+        font-size: 10px;
+        padding: 0.5rem 0.7rem;
     }
     
-    /* Desactivar efectos hover en móviles */
-    .home-img img:hover {
-        transform: none;
-    }
-    
-    .social-icons a:hover {
-        transform: none;
-        background-color: transparent;
-        box-shadow: none;
-        color: #44da31;
-    }
-    
-    .btn:hover {
-        transform: none;
-        background-color: black;
-        color: #44da31;
-        box-shadow: none;
+    /* Portrait - móviles vertical */
+    @media (orientation: portrait) {
+        header {
+            padding: 1rem 5%;
+        }
+        
+        section {
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+        }
+        
+        .home {
+            flex-direction: column;
+            gap: 3rem;
+            text-align: center;
+            justify-content: flex-start;
+            padding-top: 2rem;
+        }
+        
+        .home .home-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .home-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .home-content p {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .home-img img {
+            width: 32.5vw; /* Reducido de 65vw a 32.5vw (50%) */
+            max-width: 140px; /* Reducido de 280px a 140px (50%) */
+            margin: 2rem 0;
+        }
+        
+        .typing-text {
+            font-size: 2.4rem;
+            min-width: 250px;
+            margin: 1rem 0;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .social-icons a {
+            width: 4.5rem;
+            height: 4.5rem;
+            font-size: 2rem;
+            margin: 0.5rem;
+        }
+        
+        nav a {
+            font-size: 8px;
+            margin: 0 8px;
+        }
+        
+        /* Desactivar efectos hover en móviles */
+        .home-img img:hover {
+            transform: none;
+        }
+        
+        .social-icons a:hover {
+            transform: none;
+            background-color: transparent;
+            box-shadow: none;
+            color: #44da31;
+        }
     }
 }
 
 /* Landscape - móviles horizontal */
-@media (orientation: landscape) and (any-pointer: coarse) {
+@media (orientation: landscape) and (max-width: 995px) {
     header {
         padding: 0.8rem 5%;
-    }
-    
-    .logo {
-        font-size: 2.2rem;
     }
     
     nav a {
@@ -456,9 +389,9 @@ footer {
     }
     
     .home-img img {
-        width: 28vw;
-        min-width: 150px;
-        max-width: 200px;
+        width: 14vw; /* Reducido de 28vw a 14vw (50%) */
+        min-width: 75px; /* Reducido de 150px a 75px (50%) */
+        max-width: 100px; /* Reducido de 200px a 100px (50%) */
     }
     
     .typing-text {
@@ -473,11 +406,6 @@ footer {
         margin: 2rem 1rem 2rem 0;
     }
     
-    .btn {
-        padding: 0.9rem 2.4rem;
-        font-size: 1.4rem;
-    }
-    
     /* Desactivar efectos hover en móviles */
     .home-img img:hover {
         transform: none;
@@ -489,17 +417,13 @@ footer {
         box-shadow: none;
         color: #44da31;
     }
-    
-    .btn:hover {
-        transform: none;
-        background-color: black;
-        color: #44da31;
-        box-shadow: none;
-    }
 }
 
-/* Móviles muy pequeños */
-@media (max-width: 480px) and (any-pointer: coarse) {
+@media (max-width: 480px) {
+    nav a {
+        font-size: 10.5px;
+    }
+    
     .home .home-content h1 {
         font-size: 3.8rem;
     }
@@ -517,12 +441,12 @@ footer {
     }
     
     .home-img img {
-        width: 75vw;
+        width: 37.5vw; /* Reducido de 75vw a 37.5vw (50%) */
     }
 }
 
 /* Tablets */
-@media (min-width: 768px) and (max-width: 1024px) and (any-pointer: coarse) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .home {
         gap: 6rem;
     }
