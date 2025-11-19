@@ -89,8 +89,8 @@ nav a.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6rem;
-    padding: 2rem 9%;
+    /* gap: 6rem; */
+    /* padding: 2rem 9%; */
     width: 100%;
     overflow: hidden;
 }
@@ -183,8 +183,6 @@ footer {
     .home {
         flex-direction: column;
         text-align: center;
-        gap: 3rem;
-        padding: 1.5rem 5%;
     }
     .home-img img { 
         width: 55vw;
@@ -213,10 +211,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .home {
-        padding: 1rem 3%;
-        gap: 1.5rem;
-    }
         nav a {
         font-size: 10px;
         padding: 0.5rem 0.7rem;
@@ -238,10 +232,6 @@ footer {
         font-size: 10.5px;
         padding: 0.4rem 0.6rem;
     }
-    .home {
-        padding: 0.5rem 2%;
-        gap: 1rem;
-    }
     .home-content h1 { font-size: 2rem; }
     .home-content h3 { font-size: 1.6rem; }
     .home-content p { font-size: 1.4rem; }
@@ -253,9 +243,6 @@ footer {
 }
 
 @media (max-width: 380px) {
-    .home {
-        gap: 0.8rem;
-    }
         nav a { 
         font-size: 10.5px;
         padding: 0.4rem 0.6rem;
