@@ -10,12 +10,12 @@ const ctx = canvas.getContext("2d");
 let stars = [];
 
 // Ajustar número de estrellas según dispositivo para mejor rendimiento
-let numStars = isMobile ? 80 : 160;
+let numStars = isMobile ? 100 : 160;
 
 // Velocidad global con ajustes para móvil
-let globalSpeed = 0.05;
-const maxSpeed = isMobile ? 0.8 : 1.2;
-const acceleration = isMobile ? 0.001 : 0.002;
+let globalSpeed = isMobile ? 0.15 : 0.05;
+const maxSpeed = isMobile ? 1.5 : 1.2;
+const acceleration = isMobile ? 0.003 : 0.002;
 
 // Variables para el centro del canvas
 let centerX, centerY;
@@ -55,15 +55,23 @@ class Star {
     reset() {
         this.x = 0;
         this.y = 0;
-        this.size = isMobile ? 1 : 1.5;
-        this.length = 1;
-        this.baseSpeed = Math.random() * 0.6 + 0.4;
+        this.size = isMobile ? 0.8 : 1.5;
+        this.length = isMobile ? 0.5 : 1;
+        this.maxLength = isMobile ? 15 : 30;
+        this.baseSpeed = isMobile 
+            ? Math.random() * 0.8 + 0.6 
+            : Math.random() * 0.6 + 0.4;
         this.angle = Math.random() * Math.PI * 2;
     }
 
     update() {
-        this.size += 0.01;
-        this.length += 0.1;
+        this.size += isMobile ? 0.02 : 0.01;
+        
+        // Limitar longitud de estela en móviles
+        if (this.length < this.maxLength) {
+            this.length += isMobile ? 0.3 : 0.1;
+        }
+        
         const currentSpeed = this.baseSpeed * globalSpeed;
         this.x += Math.cos(this.angle) * currentSpeed * this.length;
         this.y += Math.sin(this.angle) * currentSpeed * this.length;
