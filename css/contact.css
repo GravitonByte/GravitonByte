@@ -28,10 +28,10 @@ body {
   background: #0a0a0a;
   color: white;
   width: 100%;
-  height: 100dvh; /* <-- mismo comportamiento que el CSS donde ya funcionaba */
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* <-- para igualar el otro diseño */
+  justify-content: flex-start;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -55,11 +55,11 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0; /* igual al CSS bueno */
+  padding: 1rem 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   width: 100%;
-  flex-shrink: 0;
+  z-index: 10;
 }
 
 nav {
@@ -67,14 +67,13 @@ nav {
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   max-width: 100%;
 }
 
 nav a {
   color: inherit;
   text-decoration: none;
-  font-size: 12px; /* tamaño ORIGINAL */
+  font-size: 12px;
   padding: 0.5rem 1rem;
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }
@@ -93,8 +92,6 @@ nav a.active {
   justify-content: center;
   padding: 20px;
   width: 100%;
-  height: auto;
-  min-height: calc(100dvh - 140px); /* Igual que el CSS que ya funcionó */
   overflow: hidden;
 }
 
@@ -105,62 +102,19 @@ footer {
   text-align: center;
   font-size: 10px;
   width: 100%;
-  max-width: 100dvw;
-  overflow: hidden;
   flex-shrink: 0;
 }
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  header {
-    padding: 1rem 0;
-  }
-
-  nav {
-    gap: 1rem;
-  }
-
-  nav a {
-    font-size: 10px; /* tamaño original móvil */
-    padding: 0.5rem 0.8rem;
-  }
-
-  .home {
-    min-height: calc(100dvh - 110px); /* Ajustado igual */
-    padding: 12px;
-  }
-
-  footer {
-    padding: 15px;
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  header {
-    padding: 0.5rem 0;
-  }
-
-  nav {
-    gap: 0.5rem;
-  }
-
   nav a {
     font-size: 10px;
-  }
-
-  .home {
-    min-height: calc(100dvh - 90px);
-    padding: 8px;
-    align-items: flex-start;
-  }
-
-  footer {
-    padding: 10px;
+    padding: 0.5rem 0.7rem;
   }
 }
 
 @media (max-width: 480px) {
   nav a {
-    font-size: 10.5px; /* pequeño ajuste */
+    font-size: 10.5px;
   }
 }
