@@ -29,8 +29,8 @@ body {
     touch-action: manipulation;
 }
 
-/* ====== CANVAS DE FONDO (Warp/Stars) ====== */
-#warpCanvas, #space {
+/* ====== CANVAS DE FONDO (Warp) ====== */
+#warpCanvas {
     position: fixed;
     top: 0;
     left: 0;
