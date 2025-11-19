@@ -221,8 +221,8 @@ footer {
         gap: 4rem;
     }
     .home-img img { width: 65vw; }
-    .home-content h1 { font-size: 5rem; }
-    .home-content h3 { font-size: 3.2rem; }
+    .home-content h1 { font-size: 3rem; }
+    .home-content h3 { font-size: 2.5rem; }
 }
 
 @media (max-width: 768px) {
@@ -234,15 +234,15 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .home-content h1 { font-size: 4rem; }
-    .home-content h3 { font-size: 2.6rem; }
-    .typing-text { font-size: 2.6rem; }
-    .home-img img { width: 70vw; max-width: 300px; }
+    .home-content h1 { font-size: 2rem; }
+    .home-content h3 { font-size: 1.6rem; }
+    .typing-text { font-size: 1.6rem; }
+    .home-img img { width: 60vw; max-width: 300px; }
 }
 
 @media (max-width: 480px) {
     nav a { font-size: 9px; }
-    .home-content h1 { font-size: 3.5rem; }
-    .home-content h3 { font-size: 2.4rem; }
-    .typing-text { font-size: 2.2rem; }
+    .home-content h1 { font-size: 1.8rem; }
+    .home-content h3 { font-size: 1.2rem; }
+    .typing-text { font-size: 1.2rem; }
 }
