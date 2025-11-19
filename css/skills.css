@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 /* ====== RESETEO Y BASE ====== */
 * {
     margin: 0;
@@ -18,24 +19,24 @@ body {
     background: #0a0a0a;
     color: white;
     width: 100%;
-    height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
 /* ====== CANVAS DE FONDO ====== */
 #space {
   position: fixed;
   inset: 0;
+  width: 100dvw;
+  height: 100dvh;
   background: #000;
   z-index: -1;
-  width: 100%;
-  height: 100%;
 }
 
 /* ====== HEADER Y NAVEGACIÓN ====== */
@@ -54,14 +55,15 @@ nav {
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 100%;
 }
 
 nav a {
   color: inherit;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 12px;  /* tamaño original restaurado */
   padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 nav a:hover,
@@ -77,11 +79,11 @@ nav a.active {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100%;
-  min-height: calc(100vh - 120px);
+  width: 100%;
   overflow: hidden;
 }
 
+/* ====== CONTENEDOR PRINCIPAL ====== */
 .home-content {
   width: 100%;
   max-width: 1400px;
@@ -117,7 +119,6 @@ nav a.active {
   padding: 20px 0;
   transition: transform 0.5s ease;
   width: max-content;
-  max-width: 100%;
 }
 
 /* ====== TARJETAS ====== */
@@ -129,7 +130,7 @@ nav a.active {
   cursor: pointer;
   min-width: 180px;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible; /* evita recortes en animación */
 }
 
 .card-inner {
@@ -164,24 +165,16 @@ nav a.active {
 }
 
 .card-front {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1)
-  );
+  background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1));
 }
 
 .card-back {
   transform: rotateY(180deg);
-  line-height: 1.5;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1)
-  );
+  background: rgba(30, 30, 40, 0.15);
+  font-size: 0.8vw;
 }
 
-/* ====== CONTENIDO DE TARJETA ====== */
+/* ====== CONTENIDO INTERNO ====== */
 .card-title {
   font-size: 1vw;
   margin-bottom: 15px;
@@ -189,11 +182,6 @@ nav a.active {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .card-image {
@@ -209,14 +197,10 @@ nav a.active {
   max-width: 130px;
   max-height: 130px;
   object-fit: contain;
-  filter: drop-shadow(0 0 1.5px rgb(255, 255, 255));
+  filter: drop-shadow(0 0 1.5px #fff);
 }
 
-.card-back {
-  font-size: 0.8vw;
-}
-
-/* ====== BOTONES DE NAVEGACIÓN ====== */
+/* ====== BOTONES DEL CARRUSEL ====== */
 .nav-btn {
   width: 50px;
   height: 50px;
@@ -227,12 +211,12 @@ nav a.active {
   justify-content: center;
   cursor: pointer;
   user-select: none;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .nav-btn:hover {
   transform: scale(1.3);
-} 
+}
 
 .nav-btn:active {
   transform: scale(0.95);
@@ -253,78 +237,7 @@ footer {
   flex-shrink: 0;
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-  .carousel-container {
-    gap: 15px;
-    padding: 0 10px;
-  }
-
-  .card {
-    flex: 0 0 100%;
-    min-width: 90px;
-  }
-
-  .nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  nav a {
-    font-size: 8px;
-    margin: 0 8px;
-  }
-
-  .card-title {
-    font-size: 2.5vw;
-  }
-
-  .card-back {
-    font-size: 1.6vw;
-  }
-
-  .home {
-    min-height: calc(100vh - 100px);
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .home {
-    padding: 10px;
-    align-items: flex-start;
-  }
-
-  .card {
-    flex: 0 0 calc(33.333% - 14px);
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .carousel {
-    max-width: 700px;
-  }
-
-  .card {
-    min-width: 200px;
-  }
-
-  .card-title {
-    font-size: 1.1vw;
-  }
-
-  .card-back {
-    font-size: 0.75vw;
-  }
-}
-
-@media (min-width: 1400px) {
-  .carousel {
-    max-width: 1200px;
-  }
-}
-
-/* Estilos adicionales para la barra circular */
+/* ====== DONUT ====== */
 .progress-container {
   position: relative;
   width: 180px;
@@ -360,13 +273,6 @@ footer {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
-  text-shadow: black;
-}
-
-.card-back {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .skill-description {
@@ -376,14 +282,34 @@ footer {
   margin-top: 10px;
 }
 
+/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
+  nav a {
+    font-size: 10px;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .carousel-container {
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .card {
+    flex: 0 0 100%;
+    min-width: 90px;
+  }
+
+  .card-title {
+    font-size: 2.5vw;
+  }
+
+  .card-back {
+    font-size: 1.6vw;
+  }
+
   .progress-container {
     width: 120px;
     height: 120px;
-  }
-
-  .progress-text {
-    font-size: 1.5rem;
   }
 
   .skill-description {
@@ -391,13 +317,35 @@ footer {
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .progress-container {
-    width: 150px;
-    height: 150px;
+@media (max-width: 768px) and (orientation: landscape) {
+  .home {
+    padding: 12px;
+    align-items: flex-start;
   }
 
-  .skill-description {
-    font-size: 0.75vw;
+  .card {
+    flex: 0 0 calc(33.333% - 14px);
+  }
+}
+
+@media (max-width: 480px) {
+  nav a {
+    font-size: 10.5px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carousel {
+    max-width: 700px;
+  }
+
+  .card {
+    min-width: 200px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .carousel {
+    max-width: 1200px;
   }
 }
