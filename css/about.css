@@ -203,7 +203,7 @@ footer {
     }
     .home-img img { 
         width: 50vw;
-        max-width: 280px;
+        max-width: 300px;
     }
 }
 
@@ -216,7 +216,7 @@ footer {
     .typing-text { font-size: 2rem; }
     .home-img img { 
         width: 50vw;
-        max-width: 250px;
+        max-width: 270px;
     }
 }
 
@@ -230,7 +230,7 @@ footer {
     .typing-text { font-size: 2rem; }
     .home-img img { 
         width: 45vw;
-        max-width: 200px;
+        max-width: 230px;
     }
 }
 
@@ -243,6 +243,6 @@ footer {
     .typing-text { font-size: 2rem; }
     .home-img img { 
         width: 40vw;
-        max-width: 180px;
+        max-width: 200px;
     }
 }
