@@ -185,7 +185,7 @@ footer {
         text-align: center;
     }
     .home-img img { 
-        width: 55vw;
+        width: 58vw;
         max-width: 350px;
     }
     .home-content h1 { font-size: 3.5rem; }
@@ -202,7 +202,7 @@ footer {
         padding: 1rem 4%;
     }
     .home-img img { 
-        width: 50vw;
+        width: 55vw;
         max-width: 300px;
     }
 }
@@ -215,7 +215,7 @@ footer {
     .home-content h3 { font-size: 2rem; }
     .typing-text { font-size: 2rem; }
     .home-img img { 
-        width: 50vw;
+        width: 52vw;
         max-width: 270px;
     }
 }
