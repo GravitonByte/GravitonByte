@@ -217,7 +217,11 @@ footer {
         padding: 1rem 3%;
         gap: 1.5rem;
     }
-    .home-content h1 { font-size: 2.8rem; }
+        nav a {
+        font-size: 10px;
+        padding: 0.5rem 0.7rem;
+    }
+    .home-content h1 { font-size: 2.4rem; }
     .home-content h3 { font-size: 2rem; }
     .typing-text { font-size: 2rem; }
     .home-img img { 
@@ -238,7 +242,7 @@ footer {
         padding: 0.5rem 2%;
         gap: 1rem;
     }
-    .home-content h1 { font-size: 2.2rem; }
+    .home-content h1 { font-size: 2rem; }
     .home-content h3 { font-size: 1.6rem; }
     .home-content p { font-size: 1.4rem; }
     .typing-text { font-size: 1.6rem; }
@@ -255,6 +259,10 @@ footer {
 @media (max-width: 380px) {
     .home {
         gap: 0.8rem;
+    }
+        nav a { 
+        font-size: 10.5px;
+        padding: 0.4rem 0.6rem;
     }
     .home-content h1 { font-size: 2rem; }
     .home-content h3 { font-size: 1.4rem; }
