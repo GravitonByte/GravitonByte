@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-/* ====== RESETEO Y BASE ====== */
 * {
     margin: 0;
     padding: 0;
@@ -12,12 +11,20 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 html {
     font-size: 62.5%;
 }
 
-/* ====== BODY ====== */
 body {
+    font-family: "Press Start 2P", cursive;
     background: #0a0a0a;
     color: white;
     width: 100%;
@@ -29,22 +36,22 @@ body {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     overscroll-behavior: none;
-    font-family: "Press Start 2P", cursive;
 }
 
-/* ====== CANVAS DE FONDO ====== */
-#warpCanvas {
+/* Fondo animado */
+canvas#warpCanvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100dvw;
     height: 100dvh;
-    background: black;
     z-index: -1;
     display: block;
+    background: black;
+    overflow: hidden;
 }
 
-/* ====== HEADER Y NAVEGACIÓN ====== */
+/* Header */
 header {
     display: flex;
     justify-content: center;
@@ -65,8 +72,7 @@ nav {
 }
 
 nav a {
-    color: inherit;
-    text-decoration: none;
+    color: white;
     font-size: 12px;
     padding: 0.5rem 1rem;
     transition: color 0.3s ease, border-bottom 0.3s ease;
@@ -79,9 +85,14 @@ nav a.active {
     border-bottom: 2px solid #44da31;
 }
 
-/* ====== SECCIÓN HOME ====== */
-.home {
+/* === SECCIÓN HOME === */
+section {
+    min-height: 100vh;
+    padding: 5rem 9% 5rem;
     flex: 1;
+}
+
+.home {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +100,7 @@ nav a.active {
     background: transparent;
     position: relative;
     z-index: 10;
-    padding: 5rem 9% 5rem;
+    min-height: calc(100vh - 120px);
 }
 
 .home .home-content h1 {
@@ -151,6 +162,28 @@ span {
     color: black;
     transform: scale(1.3) translateY(-5px);
     background-color: #44da31;
+    box-shadow: 0 0 25px #44da31;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background-color: black;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #44da31;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    border: 2px solid #44da31;
+    transition: 0.3s ease;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+    background-color: #44da31;
+    color: black;
     box-shadow: 0 0 25px #44da31;
 }
 
@@ -218,7 +251,7 @@ span {
     }
 }
 
-/* ====== FOOTER ====== */
+/* === FOOTER === */
 footer {
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
@@ -226,13 +259,16 @@ footer {
     font-size: 10px;
     width: 100%;
     flex-shrink: 0;
+    color: #fff;
+    z-index: 100;
+    font-family: "Press Start 2P", cursive;
 }
 
 .pixel-art {
     font-family: 'Press Start 2P', cursive;
 }
 
-/* ====== RESPONSIVE ====== */
+/* === MEDIA QUERIES GENERALES === */
 @media (max-width: 1000px) {
     .home {
         gap: 4rem;
@@ -254,144 +290,94 @@ footer {
     }
 
     .home-img img {
-        width: 35vw;
+        width: 70vw;
         margin-top: 4rem;
     }
 }
 
+/* === RESPONSIVE PARA NAV === */
 @media (max-width: 768px) {
     nav a {
         font-size: 10px;
         padding: 0.5rem 0.7rem;
     }
-    
-    /* Portrait - móviles vertical */
-    @media (orientation: portrait) {
-        header {
-            padding: 1rem 5%;
-        }
-        
-        .home {
-            flex-direction: column;
-            gap: 1.5rem;
-            text-align: center;
-            justify-content: flex-start;
-            padding-top: 0;
-            min-height: auto;
-            margin: 0;
-            padding: 4rem 5% 3rem;
-        }
-        
-        .home .home-content h1 {
-            font-size: 2.8rem;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-        }
-        
-        .home-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .home-content p {
-            font-size: 1.4rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-        
-        .home-img img {
-            width: 32.5vw;
-            max-width: 140px;
-            margin: 0.5rem 0 1.5rem 0;
-            order: -1;
-        }
-        
-        .typing-text {
-            font-size: 1.8rem;
-            min-width: 200px;
-            margin: 0.5rem 0;
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin: 1rem 0;
-        }
-        
-        .social-icons a {
-            width: 3.5rem;
-            height: 3.5rem;
-            font-size: 1.6rem;
-            margin: 0.3rem;
-        }
-        
-        nav a {
-            font-size: 8px;
-            margin: 0 8px;
-        }
-        
-        /* Desactivar efectos hover en móviles */
-        .home-img img:hover {
-            transform: none;
-        }
-        
-        .social-icons a:hover {
-            transform: none;
-            background-color: transparent;
-            box-shadow: none;
-            color: #44da31;
-        }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        font-size: 10.5px;
     }
 }
 
-/* Landscape - móviles horizontal */
-@media (orientation: landscape) and (max-width: 995px) {
+/* === MEDIA QUERIES PARA MÓVILES TÁCTILES === */
+
+/* Portrait - móviles vertical */
+@media (orientation: portrait) and (any-pointer: coarse) {
     header {
-        padding: 0.8rem 5%;
+        padding: 1rem 5%;
     }
     
-    nav a {
-        font-size: 1.5rem;
-        margin-left: 2rem;
+    section {
+        padding: 4rem 5% 3rem;
+        min-height: 100vh;
     }
     
     .home {
-        gap: 3rem;
-        align-items: center;
-        min-height: auto;
-        padding: 4rem 5% 2rem;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+        justify-content: flex-start;
+        padding-top: 1rem;
     }
     
     .home .home-content h1 {
-        font-size: 2.4rem;
+        font-size: 2.8rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
     }
     
     .home-content h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .home-content p {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
     }
     
     .home-img img {
-        width: 14vw;
-        min-width: 75px;
-        max-width: 100px;
+        width: 60vw;
+        max-width: 280px;
+        margin: 1rem 0;
     }
     
     .typing-text {
-        font-size: 1.6rem;
-        min-width: 180px;
+        font-size: 1.8rem;
+        min-width: 200px;
+        margin: 1rem 0;
+    }
+    
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 1.5rem 0;
     }
     
     .social-icons a {
-        width: 3.2rem;
-        height: 3.2rem;
-        font-size: 1.5rem;
-        margin: 1.5rem 0.8rem 1.5rem 0;
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.8rem;
+        margin: 0.5rem;
+    }
+    
+    .btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.4rem;
+        margin: 1rem 0;
     }
     
     /* Desactivar efectos hover en móviles */
@@ -405,15 +391,91 @@ footer {
         box-shadow: none;
         color: #44da31;
     }
+    
+    .btn:hover {
+        transform: none;
+        background-color: black;
+        color: #44da31;
+        box-shadow: none;
+    }
 }
 
-@media (max-width: 480px) {
-    nav a {
-        font-size: 10.5px;
+/* Landscape - móviles horizontal */
+@media (orientation: landscape) and (any-pointer: coarse) {
+    header {
+        padding: 0.8rem 5%;
+    }
+    
+    section {
+        padding: 4rem 5% 2rem;
+        min-height: auto;
+    }
+    
+    .home {
+        gap: 3rem;
+        align-items: center;
+        min-height: 80vh;
     }
     
     .home .home-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .home-content h3 {
         font-size: 2.2rem;
+    }
+    
+    .home-content p {
+        font-size: 1.3rem;
+    }
+    
+    .home-img img {
+        width: 28vw;
+        min-width: 150px;
+        max-width: 200px;
+    }
+    
+    .typing-text {
+        font-size: 1.8rem;
+        min-width: 200px;
+    }
+    
+    .social-icons a {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.6rem;
+        margin: 1.5rem 1rem 1.5rem 0;
+    }
+    
+    .btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.3rem;
+    }
+    
+    /* Desactivar efectos hover en móviles */
+    .home-img img:hover {
+        transform: none;
+    }
+    
+    .social-icons a:hover {
+        transform: none;
+        background-color: transparent;
+        box-shadow: none;
+        color: #44da31;
+    }
+    
+    .btn:hover {
+        transform: none;
+        background-color: black;
+        color: #44da31;
+        box-shadow: none;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 480px) and (any-pointer: coarse) {
+    .home .home-content h1 {
+        font-size: 2.5rem;
     }
     
     .home-content h3 {
@@ -429,43 +491,22 @@ footer {
     }
     
     .home-img img {
-        width: 37.5vw;
-    }
-    
-    /* Ajustes adicionales para móviles muy pequeños en portrait */
-    @media (orientation: portrait) {
-        .home {
-            padding: 3rem 5% 2rem;
-        }
-        
-        .home {
-            gap: 1rem;
-        }
-        
-        .home-img img {
-            margin: 0.3rem 0 1rem 0;
-        }
-        
-        .social-icons a {
-            width: 3rem;
-            height: 3rem;
-            font-size: 1.4rem;
-        }
+        width: 65vw;
     }
 }
 
 /* Tablets */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) and (any-pointer: coarse) {
     .home {
-        gap: 6rem;
+        gap: 5rem;
     }
     
     .home .home-content h1 {
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
     
     .home-content h3 {
-        font-size: 3.2rem;
+        font-size: 3rem;
     }
     
     .home-img img {
@@ -473,7 +514,7 @@ footer {
     }
     
     footer {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
     }
 }
 
