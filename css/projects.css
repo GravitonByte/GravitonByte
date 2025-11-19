@@ -28,14 +28,14 @@ body {
   background: #0a0a0a;
   color: white;
   width: 100%;
-  min-height: 100dvh; /* ⬅ Corrección final para móviles */
+  min-height: 100dvh; /* --> estable en móviles */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  overscroll-behavior: none; /* Evita scroll fantasma */
+  overscroll-behavior: none;
 }
 
 /* ====== CANVAS DE FONDO ====== */
@@ -64,7 +64,7 @@ header {
 nav {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   justify-content: center;
   max-width: 100%;
 }
@@ -72,7 +72,7 @@ nav {
 nav a {
   color: inherit;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px; /* <-- tamaño ORIGINAL restaurado */
   padding: 0.5rem 1rem;
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }
@@ -85,13 +85,13 @@ nav a.active {
 
 /* ====== SECCIÓN PRINCIPAL ====== */
 .home {
-  flex: 1; /* ⬅ Maneja la altura restante correctamente */
+  flex: 1; 
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   width: 100%;
-  min-height: auto; /* ⬅ ya no usamos cálculos */
+  min-height: auto;
   overflow: hidden;
 }
 
@@ -114,7 +114,7 @@ footer {
   }
 
   nav a {
-    font-size: 11px;
+    font-size: 10px; /* versión móvil original */
     padding: 0.5rem 0.8rem;
   }
 
@@ -148,6 +148,6 @@ footer {
 
 @media (max-width: 480px) {
   nav a {
-    font-size: 12px;
+    font-size: 10.5px; /* pequeño ajuste para pantallas muy pequeñas */
   }
 }
