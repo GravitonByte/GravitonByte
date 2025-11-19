@@ -225,9 +225,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 0.8rem 0;
-    }
     nav a { 
         font-size: 10.5px;
         padding: 0.4rem 0.6rem;
