@@ -9,6 +9,7 @@
     text-decoration: none;
     border: none;
     outline: none;
+    font-family: "Press Start 2P", cursive;
 }
 
 html {
@@ -16,7 +17,6 @@ html {
 }
 
 body {
-    font-family: "Press Start 2P", cursive;
     background: #0a0a0a;
     color: white;
     width: 100%;
@@ -29,20 +29,20 @@ body {
     touch-action: manipulation;
 }
 
-/* ====== CANVAS DE FONDO (Warp) ====== */
-#warpCanvas {
+/* ====== CANVAS DE FONDO (Space) ====== */
+#space {
     position: fixed;
     top: 0;
     left: 0;
     width: 100dvw;
     height: 100dvh;
+    background: #000;
     z-index: -1;
-    background: black;
+    overflow: hidden;
 }
 
 /* ====== HEADER Y NAVEGACIÓN ====== */
 header {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,8 +81,8 @@ nav a.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8rem;
-    padding: 3rem 9%;
+    gap: 5rem; /* Reducido de 8rem */
+    padding: 2rem 5%; /* Reducido de 3rem 9% */
     min-height: calc(100dvh - 120px);
     position: relative;
 }
@@ -111,7 +111,11 @@ span {
     color: #44da31;
 }
 
-/* Imagen */
+/* Imagen - padding reducido */
+.home-img {
+    padding: 0.5rem; /* Padding reducido */
+}
+
 .home-img img {
     width: 32vw;
     border-radius: 50%;
@@ -175,31 +179,84 @@ footer {
     .home {
         flex-direction: column;
         text-align: center;
-        gap: 4rem;
+        gap: 3rem; /* Reducido de 4rem */
+        padding: 1.5rem 5%; /* Padding reducido */
     }
-    .home-img img { width: 65vw; }
-    .home-content h1 { font-size: 3rem; }
-    .home-content h3 { font-size: 2.5rem; }
+    .home-img img { 
+        width: 65vw; 
+    }
+    .home-content h1 { 
+        font-size: 3rem; 
+    }
+    .home-content h3 { 
+        font-size: 2.5rem; 
+    }
+    .typing-text {
+        font-size: 2.5rem;
+    }
 }
 
 @media (max-width: 768px) {
-    nav { gap: 1rem; }
+    nav { 
+        gap: 1rem; 
+    }
     nav a {
         font-size: 10px;
         padding: 0.5rem 0.7rem;
     }
+    .home {
+        padding: 1rem 5%; /* Padding reducido */
+        gap: 2.5rem; /* Reducido */
+    }
 }
 
 @media (max-width: 600px) {
-    .home-content h1 { font-size: 3rem; }
-    .home-content h3 { font-size: 2rem; }
-    .typing-text { font-size: 2rem; }
-    .home-img img { width: 60vw; max-width: 300px; }
+    .home-content h1 { 
+        font-size: 2.8rem; /* Ajustado para mejor legibilidad */
+    }
+    .home-content h3 { 
+        font-size: 2rem; 
+    }
+    .typing-text { 
+        font-size: 1.8rem; 
+    }
+    .home-img img { 
+        width: 60vw; 
+        max-width: 300px; 
+    }
+    .home {
+        padding: 1rem 3%; /* Padding reducido */
+        gap: 2rem; /* Reducido */
+    }
 }
 
 @media (max-width: 480px) {
-    .nav a { font-size: 10.5px; }
-    .home-content h1 { font-size: 2.5rem; }
-    .home-content h3 { font-size: 1.8rem; }
-    .typing-text { font-size: 1.8rem; }
+    nav a { 
+        font-size: 9px; /* Reducido de 10.5px */
+        padding: 0.4rem 0.6rem; /* Padding reducido */
+    }
+    .home-content h1 { 
+        font-size: 2.2rem; /* Ajustado para mejor legibilidad */
+    }
+    .home-content h3 { 
+        font-size: 1.6rem; 
+    }
+    .typing-text { 
+        font-size: 1.6rem; 
+    }
+    .home {
+        padding: 0.5rem 3%; /* Padding reducido */
+        gap: 1.5rem; /* Reducido */
+    }
+}
+
+/* Ajustes adicionales para orientación vertical en móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+    .home {
+        min-height: auto;
+        padding: 1rem 5%;
+    }
+    .home-img img {
+        width: 25vw;
+    }
 }
