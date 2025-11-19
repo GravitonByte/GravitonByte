@@ -16,20 +16,20 @@ html {
     font-size: 62.5%;
 }
 
+/* ====== BODY ====== */
 body {
-    font-family: "Press Start 2P", cursive;
     background: #0a0a0a;
     color: white;
     width: 100%;
     min-height: 100dvh;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: relative;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     overscroll-behavior: none;
+    font-family: "Press Start 2P", cursive;
 }
 
 /* ====== CANVAS DE FONDO ====== */
@@ -37,22 +37,20 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100dvw;
+    height: 100dvh;
+    background: black;
     z-index: -1;
     display: block;
-    background: black;
 }
 
-/* ===========================================================
-   HEADER + NAV (CORREGIDO PARA QUE SEA IGUAL AL OTRO)
-=========================================================== */
+/* ====== HEADER Y NAVEGACIÓN ====== */
 header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 0; 
-    background: rgba(0, 0, 0, 0.50);
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     width: 100%;
     z-index: 10;
@@ -67,9 +65,10 @@ nav {
 }
 
 nav a {
-    color: white;
-    font-size: 12px;                 /* igualado */
-    padding: 0.5rem 1rem;            /* igualado */
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 0.5rem 1rem;
     transition: color 0.3s ease, border-bottom 0.3s ease;
     font-family: "Press Start 2P", cursive;
 }
@@ -81,13 +80,8 @@ nav a.active {
 }
 
 /* ====== SECCIÓN HOME ====== */
-section {
-    min-height: 100vh;
-    padding: 5rem 9% 5rem;
-    flex: 1;
-}
-
 .home {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +89,7 @@ section {
     background: transparent;
     position: relative;
     z-index: 10;
-    min-height: calc(100vh - 120px);
+    padding: 5rem 9% 5rem;
 }
 
 .home .home-content h1 {
@@ -174,6 +168,7 @@ span {
     padding-right: 0.6rem;
 }
 
+/* Palabras animadas */
 .typing-text span::before {
     content: "Desarrollador Web";
     color: #44da31;
@@ -181,6 +176,7 @@ span {
     display: inline-block;
 }
 
+/* Cursor al final */
 .typing-text span::after {
     content: "";
     position: absolute;
@@ -193,6 +189,7 @@ span {
     animation: blink 0.8s steps(1) infinite;
 }
 
+/* Parpadeo del cursor */
 @keyframes blink {
     0%, 50% {
         opacity: 1;
@@ -202,6 +199,7 @@ span {
     }
 }
 
+/* Palabras que cambian */
 @keyframes words {
     0%, 20% {
         content: "Desarrollador Web.";
@@ -220,19 +218,14 @@ span {
     }
 }
 
-/* ===========================================================
-   FOOTER (CORREGIDO PARA IGUALAR EL OTRO CÓDIGO)
-=========================================================== */
+/* ====== FOOTER ====== */
 footer {
-    background: rgba(0, 0, 0, 0.70);
+    background: rgba(0, 0, 0, 0.7);
     padding: 20px;
     text-align: center;
     font-size: 10px;
     width: 100%;
     flex-shrink: 0;
-    color: #fff;
-    z-index: 100;
-    font-family: "Press Start 2P", cursive;  
 }
 
 .pixel-art {
@@ -272,18 +265,10 @@ footer {
         padding: 0.5rem 0.7rem;
     }
     
-    /* Portrait */
+    /* Portrait - móviles vertical */
     @media (orientation: portrait) {
         header {
             padding: 1rem 5%;
-        }
-        
-        section {
-            padding: 4rem 5% 3rem;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .home {
@@ -294,6 +279,7 @@ footer {
             padding-top: 0;
             min-height: auto;
             margin: 0;
+            padding: 4rem 5% 3rem;
         }
         
         .home .home-content h1 {
@@ -346,7 +332,11 @@ footer {
             margin: 0 8px;
         }
         
-        .home-img img:hover,
+        /* Desactivar efectos hover en móviles */
+        .home-img img:hover {
+            transform: none;
+        }
+        
         .social-icons a:hover {
             transform: none;
             background-color: transparent;
@@ -356,7 +346,7 @@ footer {
     }
 }
 
-/* Landscape móvil */
+/* Landscape - móviles horizontal */
 @media (orientation: landscape) and (max-width: 995px) {
     header {
         padding: 0.8rem 5%;
@@ -367,15 +357,11 @@ footer {
         margin-left: 2rem;
     }
     
-    section {
-        padding: 4rem 5% 2rem;
-        min-height: auto;
-    }
-    
     .home {
         gap: 3rem;
         align-items: center;
-        min-height: 70vh;
+        min-height: auto;
+        padding: 4rem 5% 2rem;
     }
     
     .home .home-content h1 {
@@ -408,7 +394,11 @@ footer {
         margin: 1.5rem 0.8rem 1.5rem 0;
     }
     
-    .home-img img:hover,
+    /* Desactivar efectos hover en móviles */
+    .home-img img:hover {
+        transform: none;
+    }
+    
     .social-icons a:hover {
         transform: none;
         background-color: transparent;
@@ -442,8 +432,9 @@ footer {
         width: 37.5vw;
     }
     
+    /* Ajustes adicionales para móviles muy pequeños en portrait */
     @media (orientation: portrait) {
-        section {
+        .home {
             padding: 3rem 5% 2rem;
         }
         
