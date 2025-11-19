@@ -7,8 +7,8 @@ const landscapeQuery = window.matchMedia("(orientation: landscape) and (any-poin
 // ===== Efecto Warp optimizado para móviles =====
 const canvas = document.getElementById("warpCanvas");
 const ctx = canvas.getContext("2d");
-
 let stars = [];
+
 // Ajustar número de estrellas según dispositivo para mejor rendimiento
 let numStars = isMobile ? 80 : 160;
 
@@ -16,6 +16,9 @@ let numStars = isMobile ? 80 : 160;
 let globalSpeed = 0.05;
 const maxSpeed = isMobile ? 0.8 : 1.2;
 const acceleration = isMobile ? 0.001 : 0.002;
+
+// Variables para el centro del canvas
+let centerX, centerY;
 
 // Función para redimensionar canvas
 function resizeCanvas() {
@@ -27,15 +30,21 @@ function resizeCanvas() {
     
     ctx.scale(dpr, dpr);
     
-    // Recrear estrellas cuando cambia el tamaño en móviles
-    if (isMobile && stars.length > 0) {
+    // Actualizar centro del canvas
+    centerX = rect.width / 2;
+    centerY = rect.height / 2;
+    
+    // Recrear estrellas cuando cambia el tamaño
+    if (stars.length > 0) {
         createStars();
     }
 }
 
 // Escuchar cambios de tamaño y orientación
 window.addEventListener("resize", resizeCanvas);
-window.addEventListener("orientationchange", resizeCanvas);
+window.addEventListener("orientationchange", () => {
+    setTimeout(resizeCanvas, 100); // Pequeño delay para asegurar dimensiones correctas
+});
 resizeCanvas();
 
 class Star {
@@ -55,31 +64,33 @@ class Star {
     update() {
         this.size += 0.01;
         this.length += 0.1;
-
         const currentSpeed = this.baseSpeed * globalSpeed;
         this.x += Math.cos(this.angle) * currentSpeed * this.length;
         this.y += Math.sin(this.angle) * currentSpeed * this.length;
 
-        // Si sale de la pantalla, reiniciarlo
-        if (this.x < -canvas.width / 2 || this.x > canvas.width / 2 ||
-            this.y < -canvas.height / 2 || this.y > canvas.height / 2) {
+        // Usar centerX y centerY para verificar límites
+        const maxDistX = centerX * 1.5;
+        const maxDistY = centerY * 1.5;
+        
+        if (Math.abs(this.x) > maxDistX || Math.abs(this.y) > maxDistY) {
             this.reset();
         }
     }
 
     draw() {
         const distance = Math.sqrt(this.x * this.x + this.y * this.y);
-        const maxDistance = Math.max(canvas.width, canvas.height) / 2;
+        const maxDistance = Math.max(centerX, centerY) * 1.2;
         const opacity = Math.min(1, distance / (maxDistance * 0.6));
-
+        
         ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
         ctx.lineWidth = this.size;
-
         ctx.beginPath();
-        ctx.moveTo(this.x + canvas.width / 2, this.y + canvas.height / 2);
+        
+        // Dibujar desde el centro calculado
+        ctx.moveTo(this.x + centerX, this.y + centerY);
         ctx.lineTo(
-            this.x - Math.cos(this.angle) * this.length + canvas.width / 2,
-            this.y - Math.sin(this.angle) * this.length + canvas.height / 2
+            this.x - Math.cos(this.angle) * this.length + centerX,
+            this.y - Math.sin(this.angle) * this.length + centerY
         );
         ctx.stroke();
     }
@@ -111,12 +122,12 @@ function animate() {
         // Limpiar canvas
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+        
         // Acelerar progresivamente
         if (globalSpeed < maxSpeed) {
             globalSpeed += acceleration;
         }
-
+        
         // Actualizar y dibujar estrellas
         stars.forEach(star => {
             star.update();
