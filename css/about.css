@@ -82,7 +82,7 @@ nav a.active {
     justify-content: center;
     align-items: center;
     gap: 8rem;
-    padding: 5rem 9%;
+    padding: 3rem 9%;
     min-height: calc(100dvh - 120px);
     position: relative;
 }
