@@ -190,12 +190,12 @@ footer {
     }
     .home-content h1 { font-size: 3.5rem; }
     .home-content h3 { font-size: 2.5rem; }
+    .typing-text { font-size: 2.5rem; }
 }
 
 @media (max-width: 768px) {
     nav a {
         font-size: 10px;
-        /* padding: 0.5rem 0.7rem; */
     }
     .home {
         gap: 2rem;
@@ -210,9 +210,8 @@ footer {
 @media (max-width: 600px) {
         nav a {
         font-size: 10px;
-        /* padding: 0.5rem 0.7rem; */
     }
-    .home-content h1 { font-size: 2.4rem; }
+    .home-content h1 { font-size: 3rem; }
     .home-content h3 { font-size: 2rem; }
     .typing-text { font-size: 2rem; }
     .home-img img { 
@@ -224,12 +223,11 @@ footer {
 @media (max-width: 480px) {
     nav a { 
         font-size: 10.5px;
-        /* padding: 0.4rem 0.6rem; */
     }
-    .home-content h1 { font-size: 2rem; }
-    .home-content h3 { font-size: 1.6rem; }
-    .home-content p { font-size: 1.4rem; }
-    .typing-text { font-size: 1.6rem; }
+    .home-content h1 { font-size: 3rem; }
+    .home-content h3 { font-size: 2rem; }
+    .home-content p { font-size: 1.5rem; }
+    .typing-text { font-size: 2rem; }
     .home-img img { 
         width: 45vw;
         max-width: 200px;
@@ -239,11 +237,10 @@ footer {
 @media (max-width: 380px) {
         nav a { 
         font-size: 10.5px;
-        /* padding: 0.4rem 0.6rem; */
     }
-    .home-content h1 { font-size: 2rem; }
-    .home-content h3 { font-size: 1.4rem; }
-    .typing-text { font-size: 1.4rem; }
+    .home-content h1 { font-size: 3rem; }
+    .home-content h3 { font-size: 2rem; }
+    .typing-text { font-size: 2rem; }
     .home-img img { 
         width: 40vw;
         max-width: 180px;
