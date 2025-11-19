@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-/* RESET */
+/* ====== RESETEO Y BASE ====== */
 * {
     margin: 0;
     padding: 0;
@@ -11,39 +11,38 @@
     outline: none;
 }
 
-/* BASE */
 html {
-    font-size: 62.5%;
-}
-
-html, body {
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
+    font-size: 62.5%; /* 1rem = 10px */
 }
 
 body {
+    font-family: "Press Start 2P", cursive;
     background: #0a0a0a;
     color: white;
     width: 100%;
     min-height: 100dvh;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    font-family: "Press Start 2P", cursive;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
-/* CANVAS */
-#warpCanvas {
+/* ====== CANVAS DE FONDO (Warp/Stars) ====== */
+#warpCanvas, #space {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100dvw;
     height: 100dvh;
-    background: black;
     z-index: -1;
+    background: black;
 }
 
-/* NAV */
+/* ====== HEADER Y NAVEGACIÓN ====== */
 header {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +51,7 @@ header {
     backdrop-filter: blur(10px);
     width: 100%;
     z-index: 10;
+    flex-shrink: 0;
 }
 
 nav {
@@ -59,13 +59,14 @@ nav {
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 100%;
 }
 
 nav a {
     color: white;
     font-size: 12px;
     padding: 0.5rem 1rem;
-    transition: 0.3s ease;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 nav a:hover,
@@ -74,70 +75,56 @@ nav a.active {
     border-bottom: 2px solid #44da31;
 }
 
-/* SECCIONES */
-section {
-    padding: 5rem 9%;
-    flex: 1;
-}
-
-/* ======================= */
-/* ====   HOME AREA   ==== */
-/* ======================= */
+/* ====== HOME SECTION ====== */
 .home {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8rem;
-    width: 100%;
-    min-height: calc(100vh - 120px);
-    padding: 20px;
+    padding: 5rem 9%;
+    min-height: calc(100dvh - 120px);
     position: relative;
 }
 
-/* TEXTOS POPPINS */
-.home .home-content h1,
-.home-content h3,
-.home-content p,
-.typing-text {
-    font-family: Poppins, sans-serif;
-}
-
-/* TITULO */
-.home .home-content h1 {
+/* Títulos y texto */
+.home-content h1 {
     font-size: 6rem;
     font-weight: 700;
     line-height: 1.3;
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-content h3 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-content p {
+    font-size: 1.6rem;
 }
 
 span {
     color: #44da31;
 }
 
-/* SUBTITULO */
-.home-content h3 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-/* PÁRRAFO */
-.home-content p {
-    font-size: 1.6rem;
-}
-
-/* IMAGEN */
+/* Imagen */
 .home-img img {
     width: 32vw;
     border-radius: 50%;
-    box-shadow: 0 0 10px #44da31;
-    transition: 0.2s ease;
+    box-shadow: 0 0 15px #44da31;
+    transition: 0.3s ease;
     cursor: pointer;
 }
 
 .home-img img:hover {
     transform: scale(1.07);
+     box-shadow: 0 0 25px #44da31;
 }
 
-/* ICONOS */
+/* Iconos sociales */
 .social-icons a {
     display: inline-flex;
     justify-content: center;
@@ -159,46 +146,47 @@ span {
     box-shadow: 0 0 25px #44da31;
 }
 
-/* BOTÓN */
+/* Botón */
 .btn {
+    display: inline-block;
     padding: 1rem 2.8rem;
-    background: #000;
+    background: transparent;
     border: 2px solid #44da31;
     border-radius: 4rem;
     font-size: 1.6rem;
     color: #44da31;
     font-weight: 600;
+    margin-top: 2rem;
     transition: 0.3s ease;
-    font-family: Poppins, sans-serif;
 }
 
 .btn:hover {
     background: #44da31;
     color: #000;
-    transform: scale(1.03);
     box-shadow: 0 0 25px #44da31;
 }
 
-/* TYPING */
+/* Animación de texto tipeado */
 .typing-text {
     font-size: 3.4rem;
     font-weight: 600;
     position: relative;
+    display: inline-block;
 }
 
 .typing-text span::before {
     content: "Desarrollador Web.";
     color: #44da31;
-    animation: words 20s infinite steps(1);
+    animation: words 20s infinite;
 }
 
 .typing-text span::after {
     content: "";
     position: absolute;
-    border-left: 3px solid #44da31;
     height: 100%;
-    right: -6px;
-    animation: blink 0.8s infinite steps(1);
+    border-left: 3px solid #44da31;
+    right: -8px;
+    animation: blink 0.8s infinite;
 }
 
 @keyframes blink {
@@ -213,7 +201,7 @@ span {
     81%, 100% { content: "Ingeniero."; }
 }
 
-/* FOOTER */
+/* ====== FOOTER ====== */
 footer {
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
@@ -221,40 +209,39 @@ footer {
     font-size: 10px;
     width: 100%;
     flex-shrink: 0;
-    font-family: "Press Start 2P";
+    backdrop-filter: blur(5px);
 }
 
-/* ======================= */
-/* ===== RESPONSIVE ====== */
-/* ======================= */
-
+/* ====== RESPONSIVE ====== */
 @media (max-width: 995px) {
-    .home { 
-        flex-direction: column; 
-        gap: 4rem; 
+    .home {
+        flex-direction: column;
         text-align: center;
+        gap: 4rem;
     }
     .home-img img { width: 65vw; }
     .home-content h1 { font-size: 5rem; }
-    .home-content h3 { font-size: 2.6rem; }
+    .home-content h3 { font-size: 3.2rem; }
 }
 
-@media (orientation: portrait) and (max-width: 600px) {
-    .home { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 2rem; 
+@media (max-width: 768px) {
+    nav { gap: 1rem; }
+    nav a {
+        font-size: 10px;
+        padding: 0.5rem 0.7rem;
     }
-    .home-content h1 { font-size: 1.6rem; }
-    .home-content h3 { font-size: 1.6rem; }
-    .home-content p { font-size: 1.4rem; }
-    .home-img img { width: 60vw; max-width: 260px; }
-    .typing-text { font-size: 1.6rem; }
-    nav a { font-size: 10px; }
 }
 
-@media (max-width: 380px) {
-    .home-content h1 { font-size: 1.6rem; }
-    .home-content h3 { font-size: 1.6rem; }
-    .typing-text { font-size: 1.4rem; }
+@media (max-width: 600px) {
+    .home-content h1 { font-size: 4rem; }
+    .home-content h3 { font-size: 2.6rem; }
+    .typing-text { font-size: 2.6rem; }
+    .home-img img { width: 70vw; max-width: 300px; }
+}
+
+@media (max-width: 480px) {
+    nav a { font-size: 9px; }
+    .home-content h1 { font-size: 3.5rem; }
+    .home-content h3 { font-size: 2.4rem; }
+    .typing-text { font-size: 2.2rem; }
 }
