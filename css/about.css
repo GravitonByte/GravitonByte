@@ -11,6 +11,14 @@
     outline: none;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 html {
     font-size: 62.5%; /* 1rem = 10px */
 }
@@ -21,12 +29,13 @@ body {
     color: white;
     width: 100%;
     min-height: 100dvh;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     position: relative;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
 /* ====== CANVAS DE FONDO (Warp) ====== */
@@ -38,11 +47,11 @@ body {
     height: 100dvh;
     z-index: -1;
     background: black;
+    overflow: hidden;
 }
 
 /* ====== HEADER Y NAVEGACIÓN ====== */
 header {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +60,6 @@ header {
     backdrop-filter: blur(10px);
     width: 100%;
     z-index: 10;
-    flex-shrink: 0;
 }
 
 nav {
@@ -81,10 +89,10 @@ nav a.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8rem;
-    padding: 3rem 9%;
-    min-height: calc(100dvh - 120px);
-    position: relative;
+    gap: 6rem;
+    padding: 2rem 9%;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Títulos y texto */
@@ -122,7 +130,7 @@ span {
 
 .home-img img:hover {
     transform: scale(1.07);
-     box-shadow: 0 0 25px #44da31;
+    box-shadow: 0 0 25px #44da31;
 }
 
 /* Animación de texto tipeado */
@@ -162,12 +170,12 @@ span {
 
 /* ====== FOOTER ====== */
 footer {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  text-align: center;
-  font-size: 10px;
-  width: 100%;
-  flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    font-size: 10px;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 /* ====== RESPONSIVE ====== */
@@ -175,31 +183,84 @@ footer {
     .home {
         flex-direction: column;
         text-align: center;
-        gap: 4rem;
+        gap: 3rem;
+        padding: 1.5rem 5%;
     }
-    .home-img img { width: 65vw; }
-    .home-content h1 { font-size: 3rem; }
+    .home-img img { 
+        width: 55vw;
+        max-width: 350px;
+    }
+    .home-content h1 { font-size: 3.5rem; }
     .home-content h3 { font-size: 2.5rem; }
 }
 
 @media (max-width: 768px) {
-    nav { gap: 1rem; }
+    nav { 
+        gap: 1rem;
+    }
     nav a {
         font-size: 10px;
         padding: 0.5rem 0.7rem;
     }
+    .home {
+        gap: 2rem;
+        padding: 1rem 4%;
+    }
+    .home-img img { 
+        width: 50vw;
+        max-width: 280px;
+    }
 }
 
 @media (max-width: 600px) {
-    .home-content h1 { font-size: 3rem; }
+    .home {
+        padding: 1rem 3%;
+        gap: 1.5rem;
+    }
+    .home-content h1 { font-size: 2.8rem; }
     .home-content h3 { font-size: 2rem; }
     .typing-text { font-size: 2rem; }
-    .home-img img { width: 60vw; max-width: 300px; }
+    .home-img img { 
+        width: 50vw;
+        max-width: 250px;
+    }
 }
 
 @media (max-width: 480px) {
-    .nav a { font-size: 10.5px; }
-    .home-content h1 { font-size: 2.5rem; }
-    .home-content h3 { font-size: 1.8rem; }
-    .typing-text { font-size: 1.8rem; }
+    header {
+        padding: 0.8rem 0;
+    }
+    nav a { 
+        font-size: 10.5px;
+        padding: 0.4rem 0.6rem;
+    }
+    .home {
+        padding: 0.5rem 2%;
+        gap: 1rem;
+    }
+    .home-content h1 { font-size: 2.2rem; }
+    .home-content h3 { font-size: 1.6rem; }
+    .home-content p { font-size: 1.4rem; }
+    .typing-text { font-size: 1.6rem; }
+    .home-img img { 
+        width: 45vw;
+        max-width: 200px;
+    }
+    footer {
+        padding: 15px;
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 380px) {
+    .home {
+        gap: 0.8rem;
+    }
+    .home-content h1 { font-size: 2rem; }
+    .home-content h3 { font-size: 1.4rem; }
+    .typing-text { font-size: 1.4rem; }
+    .home-img img { 
+        width: 40vw;
+        max-width: 180px;
+    }
 }
