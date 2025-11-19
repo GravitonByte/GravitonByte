@@ -261,7 +261,7 @@ footer {
     }
 
     .home-img img {
-        width: 35vw; /* Reducido de 70vw a 35vw (50%) */
+        width: 35vw;
         margin-top: 4rem;
     }
 }
@@ -279,60 +279,66 @@ footer {
         }
         
         section {
-            padding: 8rem 5% 5rem;
+            padding: 4rem 5% 3rem; /* Reducido padding superior e inferior */
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .home {
             flex-direction: column;
-            gap: 3rem;
+            gap: 1.5rem; /* Reducido el gap */
             text-align: center;
             justify-content: flex-start;
-            padding-top: 2rem;
+            padding-top: 0; /* Eliminado padding-top */
+            min-height: auto;
+            margin: 0;
         }
         
         .home .home-content h1 {
-            font-size: 4.5rem;
+            font-size: 2.8rem;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Reducido margen inferior */
         }
         
         .home-content h3 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem; /* Reducido margen inferior */
         }
         
         .home-content p {
-            font-size: 1.6rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-size: 1.4rem; /* Reducido tamaño de texto */
+            line-height: 1.5;
+            margin-bottom: 1.5rem; /* Reducido margen inferior */
         }
         
         .home-img img {
-            width: 32.5vw; /* Reducido de 65vw a 32.5vw (50%) */
-            max-width: 140px; /* Reducido de 280px a 140px (50%) */
-            margin: 2rem 0;
+            width: 32.5vw;
+            max-width: 140px;
+            margin: 0.5rem 0 1.5rem 0; /* Ajustado márgenes: arriba muy pequeño, abajo pequeño */
+            order: -1; /* Mover imagen arriba del contenido */
         }
         
         .typing-text {
-            font-size: 2.4rem;
-            min-width: 250px;
-            margin: 1rem 0;
+            font-size: 1.8rem; /* Reducido tamaño del texto animado */
+            min-width: 200px;
+            margin: 0.5rem 0; /* Reducido margen */
         }
         
         .social-icons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: 0.8rem; /* Reducido gap entre iconos */
+            margin: 1rem 0; /* Reducido margen */
         }
         
         .social-icons a {
-            width: 4.5rem;
-            height: 4.5rem;
-            font-size: 2rem;
-            margin: 0.5rem;
+            width: 3.5rem; /* Iconos más pequeños */
+            height: 3.5rem;
+            font-size: 1.6rem;
+            margin: 0.3rem; /* Reducido margen */
         }
         
         nav a {
@@ -366,44 +372,44 @@ footer {
     }
     
     section {
-        padding: 6rem 5% 3rem;
+        padding: 4rem 5% 2rem; /* Reducido padding */
         min-height: auto;
     }
     
     .home {
-        gap: 4rem;
+        gap: 3rem; /* Reducido gap */
         align-items: center;
-        min-height: 80vh;
+        min-height: 70vh; /* Reducido altura mínima */
     }
     
     .home .home-content h1 {
-        font-size: 3.8rem;
-    }
-    
-    .home-content h3 {
         font-size: 2.4rem;
     }
     
+    .home-content h3 {
+        font-size: 1.8rem;
+    }
+    
     .home-content p {
-        font-size: 1.4rem;
+        font-size: 1.2rem; /* Texto más pequeño */
     }
     
     .home-img img {
-        width: 14vw; /* Reducido de 28vw a 14vw (50%) */
-        min-width: 75px; /* Reducido de 150px a 75px (50%) */
-        max-width: 100px; /* Reducido de 200px a 100px (50%) */
+        width: 14vw;
+        min-width: 75px;
+        max-width: 100px;
     }
     
     .typing-text {
-        font-size: 2rem;
-        min-width: 220px;
+        font-size: 1.6rem; /* Texto animado más pequeño */
+        min-width: 180px;
     }
     
     .social-icons a {
-        width: 3.8rem;
-        height: 3.8rem;
-        font-size: 1.8rem;
-        margin: 2rem 1rem 2rem 0;
+        width: 3.2rem; /* Iconos más pequeños */
+        height: 3.2rem;
+        font-size: 1.5rem;
+        margin: 1.5rem 0.8rem 1.5rem 0; /* Margen reducido */
     }
     
     /* Desactivar efectos hover en móviles */
@@ -425,23 +431,44 @@ footer {
     }
     
     .home .home-content h1 {
-        font-size: 3.8rem;
-    }
-    
-    .home-content h3 {
         font-size: 2.2rem;
     }
     
+    .home-content h3 {
+        font-size: 1.8rem;
+    }
+    
     .typing-text {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     
     .home-content p {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .home-img img {
-        width: 37.5vw; /* Reducido de 75vw a 37.5vw (50%) */
+        width: 37.5vw;
+    }
+    
+    /* Ajustes adicionales para móviles muy pequeños en portrait */
+    @media (orientation: portrait) {
+        section {
+            padding: 3rem 5% 2rem;
+        }
+        
+        .home {
+            gap: 1rem;
+        }
+        
+        .home-img img {
+            margin: 0.3rem 0 1rem 0;
+        }
+        
+        .social-icons a {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.4rem;
+        }
     }
 }
 
