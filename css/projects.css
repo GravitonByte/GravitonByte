@@ -23,18 +23,22 @@ html {
   font-size: 62.5%;
 }
 
+/* ====== BODY ====== */
 body {
   background: #0a0a0a;
   color: white;
+  width: 100%;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   overscroll-behavior: none;
 }
 
-/* ====== FONDO ESTRELLAS ====== */
+/* ====== CANVAS DE FONDO ====== */
 #space {
   position: fixed;
   top: 0;
@@ -43,14 +47,18 @@ body {
   height: 100dvh;
   background: #000;
   z-index: -1;
+  overflow: hidden;
 }
 
-/* ====== HEADER ====== */
+/* ====== HEADER Y NAVEGACIÓN ====== */
 header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1rem 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-  text-align: center;
+  width: 100%;
   z-index: 10;
 }
 
@@ -59,13 +67,15 @@ nav {
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 100%;
 }
 
 nav a {
-  color: white;
+  color: inherit;
+  text-decoration: none;
   font-size: 12px;
   padding: 0.5rem 1rem;
-  transition: all 0.3s;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 nav a:hover,
@@ -74,18 +84,25 @@ nav a.active {
   border-bottom: 2px solid #44da31;
 }
 
-/* ====== MAIN ====== */
+/* ====== SECCIÓN PRINCIPAL ====== */
 .home {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  width: 100%;
+  overflow: hidden;
 }
 
+/* ====== CONTENEDOR PRINCIPAL ====== */
 .home-content {
   width: 100%;
   max-width: 1400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* ====== CARRUSEL ====== */
@@ -97,9 +114,11 @@ nav a.active {
   justify-content: center;
   gap: 30px;
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .carousel {
+  position: relative;
   width: 100%;
   max-width: 1000px;
   overflow: hidden;
@@ -111,24 +130,28 @@ nav a.active {
   gap: 20px;
   padding: 20px 0;
   transition: transform 0.5s ease;
+  align-items: flex-start;
 }
 
 /* ====== TARJETAS ====== */
 .card {
+  position: relative;
   flex: 0 0 calc(33.333% - 14px);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3/4;
   perspective: 1000px;
   cursor: pointer;
   min-width: 180px;
+  max-width: 100%;
+  overflow: visible;
 }
 
 .card-inner {
   width: 100%;
   height: 100%;
-  position: relative;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
   border-radius: 20px;
+  position: relative;
 }
 
 .card.flipped .card-inner {
@@ -140,241 +163,404 @@ nav a.active {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
   border-radius: 20px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(30, 30, 40, 0.15);
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  overflow: hidden;
+  padding: 15px;
+  text-align: center;
 }
 
 .card-front {
-  background: linear-gradient(135deg, rgba(0,0,0,0.06), rgba(0,0,0,0.1));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06));
 }
 
 .card-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
-  gap: 14px;
-}
-
-/* ====== CARD BACK: VÍDEO GRANDE ====== */
-.card-back .card-title {
-  font-size: clamp(1.4rem, 2.2vw, 2.6rem);
-  text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  flex-shrink: 0;
-}
-
-.card-back .video-container {
-  position: relative;
-  flex: 1;
-  min-height: 180px;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-
-.card-back .video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;     /* cambia a "cover" si quieres que llene recortando */
-  display: block;
-}
-
-.card-back .skill-description {
-  font-size: clamp(1rem, 1.6vw, 1.8rem);
   line-height: 1.5;
-  text-align: center;
-  flex-shrink: 0;
-  padding-top: 8px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-/* ====== CARD FRONT ====== */
+/* ====== CONTENIDO DE TARJETA ====== */
 .card-title {
-  font-size: 1.1vw;
+  font-size: 1vw;
   margin-bottom: 15px;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.card-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
 }
 
 .card-image img {
   max-width: 130px;
   max-height: 130px;
   object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+  filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.6));
 }
 
-/* ====== BOTONES CARRUSEL ====== */
+.card-back {
+  font-size: 0.8vw;
+}
+
+/* ====== BOTONES DE NAVEGACIÓN ====== */
 .nav-btn {
   width: 50px;
   height: 50px;
-  background: rgba(0,0,0,0.6);
+  font-size: 24px;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 24px;
   cursor: pointer;
   user-select: none;
-  transition: all 0.3s;
+  transition: transform 0.3s ease;
 }
 
-.nav-btn:hover { transform: scale(1.2); background: #44da31; }
-.nav-btn:active { transform: scale(0.95); }
-.nav-btn.disabled { opacity: 0.3; cursor: not-allowed; }
-
-/* ====== CONTROLES DE VÍDEO - IZQUIERDA Y DERECHA ====== */
-.video-controls {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-  z-index: 20;
+.nav-btn:hover {
+  transform: scale(1.2);
 }
 
-.video-controls > * {
-  pointer-events: auto;
+.nav-btn:active {
+  transform: scale(0.95);
 }
 
-.volume-btn,
-.fullscreen-btn {
-  width: 44px;
-  height: 44px;
+.nav-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ====== FOOTER ====== */
+footer {
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  padding: 20px;
+  text-align: center;
+  font-size: 10px;
+  width: 100%;
+  flex-shrink: 0;
 }
 
-.volume-btn:hover,
-.fullscreen-btn:hover {
-  background: #44da31;
-  transform: scale(1.15);
-  border-color: #44da31;
+.skill-description {
+  font-size: 0.8vw;
+  line-height: 1.5;
+  padding: 0 10px;
+  margin-top: 10px;
 }
 
-.volume-slider {
-  width: 90px;
-  height: 6px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 0.3s;
+/* ===== VIDEO LOCAL DENTRO DE TARJETA ===== */
+.video-container {
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  background: #000;
 }
 
-.volume-btn:hover + .volume-slider,
-.volume-slider:hover {
-  opacity: 1;
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
 }
 
-/* ====== PLAY OVERLAY ====== */
+/* Overlay de reproducción */
 .play-overlay {
   position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s ease;
 }
 
-.play-overlay.hidden { opacity: 0; pointer-events: none; }
+.play-overlay.hidden {
+  display: none;
+}
 
 .play-button {
-  width: 70px;
-  height: 70px;
-  background: rgba(0,0,0,0.8);
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .play-button::before {
   content: "";
-  border-left: 24px solid white;
-  border-top: 16px solid transparent;
-  border-bottom: 16px solid transparent;
-  margin-left: 6px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 4px;
 }
 
-.play-overlay:hover .play-button { transform: scale(1.15); }
+.play-overlay:hover .play-button {
+  transform: scale(1.1);
+}
 
-/* ====== RESPONSIVE ====== */
+/* ====== MEJORAS ESPECÍFICAS PARA MÓVILES ====== */
 @media (max-width: 768px) {
-  .card { flex: 0 0 100%; min-width: 260px; }
-
-  .card-back { padding: 14px; gap: 12px; }
-  .card-back .video-container { min-height: 220px; border-radius: 14px; }
-
-  .play-button { width: 56px; height: 56px; }
-  .play-button::before {
-    border-left: 18px solid white;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    margin-left: 4px;
+  nav a {
+    font-size: 10px;
   }
 
-  .volume-btn,
-  .fullscreen-btn {
+  .carousel-container {
+    gap: 15px;
+    padding: 0 10px;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+
+  /* tarjetas apilan en móvil (1 por fila) */
+  .card {
+    flex: 0 0 100%;
+    min-width: 220px;
+  }
+
+  .card-title {
+    font-size: 3vw;
+  }
+
+  .card-back {
+    font-size: 1.6vw;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .skill-description {
+    font-size: 1.6vw;
+  }
+
+  /* MEJORAS ESPECÍFICAS PARA VIDEO EN MÓVIL */
+  .card-back {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+
+  .video-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50% !important;
+    height: auto !important;
+    margin-bottom: 0;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .play-overlay {
+    display: flex;
+  }
+
+  .play-button {
     width: 40px;
     height: 40px;
   }
 
-  .volume-slider { display: none; } /* sin slider en móvil */
+  .play-button::before {
+    border-left: 12px solid white;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
+
+  .skill-description {
+    margin-top: 0;
+    padding-top: 10px;
+    font-size: 2vw;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    text-align: left;
+  }
 }
 
 @media (max-width: 480px) {
-  .card-back .video-container { min-height: 180px; }
+  nav a {
+    font-size: 10.5px;
+  }
+
+  .card {
+    min-width: 180px;
+  }
+
+  .video-container {
+    width: 45% !important;
+  }
+
+  .skill-description {
+    font-size: 2.2vw;
+  }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-  .card { flex: 0 0 calc(33.333% - 14px); min-width: 160px; }
+  .home {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  /* en landscape de móvil permitimos mostrar 3 columnas si hay espacio */
+  .card {
+    flex: 0 0 calc(33.333% - 14px);
+    min-width: 160px;
+  }
+
+  .video-container {
+    width: 40% !important;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1400px) {
-  .carousel { max-width: 900px; }
+  .carousel {
+    max-width: 900px;
+  }
+
+  .card {
+    min-width: 200px;
+  }
+
+  .card-title {
+    font-size: 1.1vw;
+  }
+
+  .card-back {
+    font-size: 0.9vw;
+  }
 }
 
-@media (min-width: 1401px) {
-  .carousel { max-width: 1200px; }
+@media (min-width: 1400px) {
+  .carousel {
+    max-width: 1200px;
+  }
 }
 
-/* ====== PANTALLA COMPLETA ====== */
-.video-container:fullscreen,
-.video-container:-webkit-full-screen,
-.video-container:-moz-full-screen,
-.video-container:-ms-fullscreen {
+/* ===== CONTROLES DE VIDEO ===== */
+.video-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+}
+
+.video-container:hover .video-controls {
+  opacity: 1;
+}
+
+.volume-btn, .fullscreen-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 8px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.volume-btn:hover, .fullscreen-btn:hover {
+  background: rgb(255, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+
+.volume-slider {
+  width: 80px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  outline: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.volume-btn:hover + .volume-slider,
+.volume-slider:hover {
+  opacity: 1;
+  width: 100px;
+}
+
+/* En móviles, ocultamos el control de volumen */
+@media (max-width: 768px) {
+  .volume-btn, .volume-slider {
+    display: none;
+  }
+}
+
+/* Ajustes para pantalla completa */
+.video-container:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
   border-radius: 0;
 }
 
-/* ====== FOOTER ====== */
-footer {
-  background: rgba(0,0,0,0.7);
-  padding: 20px;
-  text-align: center;
-  font-size: 10px;
-  flex-shrink: 0;
+.video-container:-moz-full-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.video-container:-ms-fullscreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.video-container:fullscreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
 }

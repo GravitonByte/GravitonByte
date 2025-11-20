@@ -47,17 +47,17 @@
                     </div>
                   </div>
                   <div class="card-back">
-                    <div class="card-title">Visor médico</div>
-
                     <div class="video-container">
-                      <video preload="metadata" playsinline loop muted>
+                      <video preload="metadata" playsinline>
                         <source src="assets/video/video.mp4" type="video/mp4" />
+                        Tu navegador no soporta el elemento de video.
                       </video>
                       <div class="play-overlay">
                         <div class="play-button"></div>
                       </div>
+                      <!-- Controles personalizados -->
                       <div class="video-controls">
-                        <button class="volume-btn">
+                        <button class="volume-btn" title="Volumen">
                           <i class="fas fa-volume-up"></i>
                         </button>
                         <input
@@ -65,18 +65,19 @@
                           class="volume-slider"
                           min="0"
                           max="1"
-                          step="0.05"
+                          step="0.1"
                           value="1"
                         />
-                        <button class="fullscreen-btn">
+                        <button
+                          class="fullscreen-btn"
+                          title="Pantalla completa"
+                        >
                           <i class="fas fa-expand"></i>
                         </button>
                       </div>
                     </div>
-
                     <div class="skill-description">
-                      Aplicación web para visualizar imágenes médicas en 2D/3D
-                      con herramientas avanzadas.
+                      Aplicación web para visualizar imágenes médicas.
                     </div>
                   </div>
                 </div>
