@@ -34,34 +34,77 @@
 
     <section class="home">
       <div class="home-content">
-        <!-- Carrusel de habilidades -->
         <div class="carousel-container">
           <div class="nav-btn prev"><i class="fas fa-chevron-left"></i></div>
           <div class="carousel">
             <div class="carousel-track">
-              <!-- Visor médico -->
-              <div class="card" data-skill="95">
+              <div class="card" data-video-id="qk_3SwXmpGM">
                 <div class="card-inner">
                   <div class="card-front">
                     <div class="card-title">Visor médico</div>
                     <div class="card-image">
-                      <img src="assets/icons/icon-rx.png" alt="HTML" />
+                      <img src="assets/icons/icon-rx.png" alt="Visor" />
                     </div>
                   </div>
                   <div class="card-back">
                     <div class="video-container">
-                      <iframe
-                        src="https://www.youtube.com/embed/qk_3SwXmpGM?rel=0&modestbranding=1&playsinline=1&autoplay=0&mute=0&enablejsapi=1"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                        loading="lazy"
-                      >
-                      </iframe>
+                      <div class="youtube-player"></div>
+                      <div class="play-overlay">
+                        <div class="play-button"></div>
+                      </div>
                     </div>
                     <div class="skill-description">
                       Aplicación web para visualizar imágenes médicas.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" data-video-id="dQw4w9WgXcQ">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Proyecto 2</div>
+                    <div class="card-image">
+                      <img
+                        src="https://via.placeholder.com/130?text=P2"
+                        alt="Proyecto 2"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="video-container">
+                      <div class="youtube-player"></div>
+                      <div class="play-overlay">
+                        <div class="play-button"></div>
+                      </div>
+                    </div>
+                    <div class="skill-description">
+                      Descripción del segundo proyecto.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" data-video-id="9bZkp7q19f0">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="card-title">Proyecto 3</div>
+                    <div class="card-image">
+                      <img
+                        src="https://via.placeholder.com/130?text=P3"
+                        alt="Proyecto 3"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-back">
+                    <div class="video-container">
+                      <div class="youtube-player"></div>
+                      <div class="play-overlay">
+                        <div class="play-button"></div>
+                      </div>
+                    </div>
+                    <div class="skill-description">
+                      Descripción del tercer proyecto.
                     </div>
                   </div>
                 </div>
@@ -81,6 +124,65 @@
     <script src="js/space.js"></script>
 
     <script>
+      // YouTube API
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      const players = {};
+      let apiReady = false;
+
+      window.onYouTubeIframeAPIReady = function () {
+        apiReady = true;
+      };
+
+      function createPlayer(card) {
+        const videoId = card.dataset.videoId;
+        const playerDiv = card.querySelector(".youtube-player");
+        const playOverlay = card.querySelector(".play-overlay");
+        const playerId =
+          "player-" + videoId + "-" + Math.random().toString(36).substr(2, 9);
+
+        playerDiv.id = playerId;
+
+        if (!apiReady) {
+          setTimeout(() => createPlayer(card), 100);
+          return;
+        }
+
+        players[playerId] = new YT.Player(playerId, {
+          videoId: videoId,
+          playerVars: {
+            autoplay: 0,
+            controls: 1,
+            modestbranding: 1,
+            rel: 0,
+            playsinline: 1,
+          },
+          events: {
+            onReady: function (event) {
+              playOverlay.addEventListener("click", function (e) {
+                e.stopPropagation();
+                event.target.playVideo();
+                playOverlay.classList.add("hidden");
+              });
+            },
+            onStateChange: function (event) {
+              if (event.data === YT.PlayerState.PLAYING) {
+                playOverlay.classList.add("hidden");
+              } else if (
+                event.data === YT.PlayerState.PAUSED ||
+                event.data === YT.PlayerState.ENDED
+              ) {
+                playOverlay.classList.remove("hidden");
+              }
+            },
+          },
+        });
+      }
+
+      // Carrusel
       const track = document.querySelector(".carousel-track");
       const cards = Array.from(track.children);
       const prevButton = document.querySelector(".prev");
@@ -121,76 +223,72 @@
         }
       });
 
-      // === FLIP DE TARJETAS MEJORADO PARA MÓVIL ===
-      let touchStartTime = 0;
-      let isTouchingVideo = false;
+      // Flip de tarjetas
+      let lastFlippedCard = null;
 
       cards.forEach((card) => {
-        const flipCard = () => {
-          // Solo voltear si no estamos tocando el video
-          if (isTouchingVideo) {
-            isTouchingVideo = false;
-            return;
-          }
+        let playerCreated = false;
 
-          cards.forEach((c) => c !== card && c.classList.remove("flipped"));
-          card.classList.toggle("flipped");
-        };
-
-        // Click normal (escritorio)
-        card.addEventListener("click", (e) => {
-          // Si el click viene del iframe o su contenedor, ignorar
+        const flipCard = (e) => {
           if (
-            e.target.closest("iframe") ||
-            e.target.closest(".video-container")
+            e &&
+            (e.target.closest(".play-overlay") ||
+              e.target.closest(".youtube-player"))
           ) {
             return;
           }
-          flipCard();
-        });
 
-        // Touch en móvil
+          const wasFlipped = card.classList.contains("flipped");
+
+          if (lastFlippedCard && lastFlippedCard !== card) {
+            lastFlippedCard.classList.remove("flipped");
+            const lastPlayerId = Object.keys(players).find((id) =>
+              lastFlippedCard.querySelector("#" + id)
+            );
+            if (lastPlayerId && players[lastPlayerId]) {
+              players[lastPlayerId].pauseVideo();
+            }
+          }
+
+          card.classList.toggle("flipped");
+
+          if (!wasFlipped) {
+            lastFlippedCard = card;
+            if (!playerCreated) {
+              createPlayer(card);
+              playerCreated = true;
+            }
+          } else {
+            const playerId = Object.keys(players).find((id) =>
+              card.querySelector("#" + id)
+            );
+            if (playerId && players[playerId]) {
+              players[playerId].pauseVideo();
+            }
+          }
+        };
+
+        card.addEventListener("click", flipCard);
+
+        let touchStartTime = 0;
         card.addEventListener("touchend", (e) => {
-          const touch = e.changedTouches[0];
           const now = Date.now();
-
-          // Si fue un toque rápido y no sobre el video
           if (now - touchStartTime < 500) {
             if (
-              !e.target.closest("iframe") &&
-              !e.target.closest(".video-container")
+              !e.target.closest(".play-overlay") &&
+              !e.target.closest(".youtube-player")
             ) {
-              e.preventDefault(); // evita scroll accidental
-              flipCard();
+              e.preventDefault();
+              flipCard(e);
             }
           }
         });
 
-        card.addEventListener("touchstart", (e) => {
+        card.addEventListener("touchstart", () => {
           touchStartTime = Date.now();
-          if (
-            e.target.closest("iframe") ||
-            e.target.closest(".video-container")
-          ) {
-            isTouchingVideo = true;
-          }
         });
-
-        // Detectar si se toca el video (incluso si está dentro del iframe)
-        const iframe = card.querySelector("iframe");
-        if (iframe) {
-          iframe.addEventListener("touchstart", () => {
-            isTouchingVideo = true;
-          });
-
-          // Para mayor seguridad: si se toca cualquier parte del contenedor del video
-          iframe.parentElement.addEventListener("touchstart", (e) => {
-            isTouchingVideo = true;
-          });
-        }
       });
 
-      // Resetear al cambiar tamaño
       window.addEventListener("resize", () => {
         index = Math.max(0, Math.min(index, cards.length - getCardsToShow()));
         updateCarousel();
