@@ -38,7 +38,7 @@
           <div class="nav-btn prev"><i class="fas fa-chevron-left"></i></div>
           <div class="carousel">
             <div class="carousel-track">
-              <div class="card" data-video-id="qk_3SwXmpGM">
+              <div class="card" data-video-src="assets/video/video.mp4">
                 <div class="card-inner">
                   <div class="card-front">
                     <div class="card-title">Visor médico</div>
@@ -48,13 +48,13 @@
                   </div>
                   <div class="card-back">
                     <div class="video-container">
-                      <div class="youtube-player"></div>
+                      <video preload="metadata" playsinline>
+                        <source src="assets/video/video.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                      </video>
                       <div class="play-overlay">
                         <div class="play-button"></div>
                       </div>
-                      <button class="fullscreen-btn" title="Pantalla completa">
-                        <i class="fas fa-expand"></i>
-                      </button>
                     </div>
                     <div class="skill-description">
                       Aplicación web para visualizar imágenes médicas.
@@ -63,7 +63,7 @@
                 </div>
               </div>
 
-              <div class="card" data-video-id="dQw4w9WgXcQ">
+              <div class="card" data-video-src="assets/video/video2.mp4">
                 <div class="card-inner">
                   <div class="card-front">
                     <div class="card-title">Proyecto 2</div>
@@ -76,7 +76,10 @@
                   </div>
                   <div class="card-back">
                     <div class="video-container">
-                      <div class="youtube-player"></div>
+                      <video preload="metadata" playsinline>
+                        <source src="assets/video/video2.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                      </video>
                       <div class="play-overlay">
                         <div class="play-button"></div>
                       </div>
@@ -88,7 +91,7 @@
                 </div>
               </div>
 
-              <div class="card" data-video-id="9bZkp7q19f0">
+              <div class="card" data-video-src="assets/video/video3.mp4">
                 <div class="card-inner">
                   <div class="card-front">
                     <div class="card-title">Proyecto 3</div>
@@ -101,7 +104,10 @@
                   </div>
                   <div class="card-back">
                     <div class="video-container">
-                      <div class="youtube-player"></div>
+                      <video preload="metadata" playsinline>
+                        <source src="assets/video/video3.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                      </video>
                       <div class="play-overlay">
                         <div class="play-button"></div>
                       </div>
@@ -125,181 +131,7 @@
 
     <!-- Script del fondo animado -->
     <script src="js/space.js"></script>
-
-    <script>
-      // YouTube API
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      const players = {};
-      let apiReady = false;
-
-      window.onYouTubeIframeAPIReady = function () {
-        apiReady = true;
-      };
-
-      function createPlayer(card) {
-        const videoId = card.dataset.videoId;
-        const playerDiv = card.querySelector(".youtube-player");
-        const playOverlay = card.querySelector(".play-overlay");
-        const playerId =
-          "player-" + videoId + "-" + Math.random().toString(36).substr(2, 9);
-
-        playerDiv.id = playerId;
-
-        if (!apiReady) {
-          setTimeout(() => createPlayer(card), 100);
-          return;
-        }
-
-        players[playerId] = new YT.Player(playerId, {
-          videoId: videoId,
-          playerVars: {
-            autoplay: 0,
-            controls: 1,
-            modestbranding: 1,
-            rel: 0,
-            playsinline: 1,
-          },
-          events: {
-            onReady: function (event) {
-              playOverlay.addEventListener("click", function (e) {
-                e.stopPropagation();
-                event.target.playVideo();
-                playOverlay.classList.add("hidden");
-              });
-            },
-            onStateChange: function (event) {
-              if (event.data === YT.PlayerState.PLAYING) {
-                playOverlay.classList.add("hidden");
-              } else if (
-                event.data === YT.PlayerState.PAUSED ||
-                event.data === YT.PlayerState.ENDED
-              ) {
-                playOverlay.classList.remove("hidden");
-              }
-            },
-          },
-        });
-      }
-
-      // Carrusel
-      const track = document.querySelector(".carousel-track");
-      const cards = Array.from(track.children);
-      const prevButton = document.querySelector(".prev");
-      const nextButton = document.querySelector(".next");
-      let index = 0;
-
-      function updateCarousel() {
-        const gap = 20;
-        const cardWidth = cards[0].offsetWidth;
-        const moveAmount = cardWidth + gap;
-        track.style.transform = `translateX(${-index * moveAmount}px)`;
-
-        prevButton.classList.toggle("disabled", index === 0);
-        nextButton.classList.toggle(
-          "disabled",
-          index >= cards.length - getCardsToShow()
-        );
-      }
-
-      function getCardsToShow() {
-        const w = window.innerWidth;
-        if (w <= 768) return 1;
-        if (w <= 1024) return 2;
-        return 3;
-      }
-
-      nextButton.addEventListener("click", () => {
-        if (index < cards.length - getCardsToShow()) {
-          index++;
-          updateCarousel();
-        }
-      });
-
-      prevButton.addEventListener("click", () => {
-        if (index > 0) {
-          index--;
-          updateCarousel();
-        }
-      });
-
-      // Flip de tarjetas
-      let lastFlippedCard = null;
-
-      cards.forEach((card) => {
-        let playerCreated = false;
-
-        const flipCard = (e) => {
-          if (
-            e &&
-            (e.target.closest(".play-overlay") ||
-              e.target.closest(".youtube-player") ||
-              e.target.closest(".video-container") ||
-              e.target.closest(".fullscreen-btn"))
-          ) {
-            return;
-          }
-
-          const wasFlipped = card.classList.contains("flipped");
-
-          if (lastFlippedCard && lastFlippedCard !== card) {
-            lastFlippedCard.classList.remove("flipped");
-            const lastPlayerId = Object.keys(players).find((id) =>
-              lastFlippedCard.querySelector("#" + id)
-            );
-            if (lastPlayerId && players[lastPlayerId]) {
-              players[lastPlayerId].pauseVideo();
-            }
-          }
-
-          card.classList.toggle("flipped");
-
-          if (!wasFlipped) {
-            lastFlippedCard = card;
-            if (!playerCreated) {
-              createPlayer(card);
-              playerCreated = true;
-            }
-          } else {
-            const playerId = Object.keys(players).find((id) =>
-              card.querySelector("#" + id)
-            );
-            if (playerId && players[playerId]) {
-              players[playerId].pauseVideo();
-            }
-          }
-        };
-
-        card.addEventListener("click", flipCard);
-
-        let touchStartTime = 0;
-        card.addEventListener("touchend", (e) => {
-          const now = Date.now();
-          if (now - touchStartTime < 500) {
-            if (
-              !e.target.closest(".play-overlay") &&
-              !e.target.closest(".youtube-player")
-            ) {
-              e.preventDefault();
-              flipCard(e);
-            }
-          }
-        });
-
-        card.addEventListener("touchstart", () => {
-          touchStartTime = Date.now();
-        });
-      });
-
-      window.addEventListener("resize", () => {
-        index = Math.max(0, Math.min(index, cards.length - getCardsToShow()));
-        updateCarousel();
-      });
-
-      updateCarousel();
-    </script>
+    <!-- Script del carrusel y videos -->
+    <script src="js/projects.js"></script>
   </body>
 </html>
