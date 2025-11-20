@@ -365,15 +365,19 @@ footer {
   }
 }
 
-/* ===== VIDEO DENTRO DE TARJETA ===== */
+/* ===== VIDEO: Mejorado para móviles ===== */
+
+/* Ajuste general del contenedor de video */
 .video-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* Formato 16:9 */
+  padding-top: 56.25%;
   border-radius: 15px;
   overflow: hidden;
+  background: #000;
 }
 
+/* Iframe del video con interacción total */
 .video-container iframe {
   position: absolute;
   top: 0;
@@ -382,46 +386,66 @@ footer {
   height: 100%;
   border: none;
   pointer-events: auto !important;
-  touch-action: pan-y pinch-zoom; /* permite gestos normales dentro del video */
+  touch-action: pan-y pinch-zoom;
 }
 
-/* Botón de pantalla completa personalizado */
+/* Botón de pantalla completa mejorado */
 .fullscreen-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  top: 8px;
+  right: 8px;
+  width: 45px;
+  height: 45px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 100;
-  transition: all 0.3s ease;
+  z-index: 200;
   backdrop-filter: blur(5px);
-}
-
-.fullscreen-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
-  border-color: #44da31;
-  transform: scale(1.1);
-}
-
-.fullscreen-btn:active {
-  transform: scale(0.95);
+  transition: 0.25s ease;
 }
 
 .fullscreen-btn i {
+  font-size: 20px;
   color: white;
-  font-size: 18px;
 }
 
-/* Ocultar botón en desktop (YouTube ya lo tiene) */
-@media (min-width: 769px) {
-  .fullscreen-btn {
-    display: none;
+.fullscreen-btn:active {
+  transform: scale(0.88);
+}
+
+/* ========= OPTIMIZACIÓN PARA MÓVIL ========= */
+@media (max-width: 768px) {
+  /* video más grande y más accesible */
+  .video-container {
+    padding-top: 65%; /* aumenta el alto */
+    border-radius: 12px;
   }
+
+  /* botón fullscreen más grande */
+  .fullscreen-btn {
+    width: 55px;
+    height: 55px;
+    top: 6px;
+    right: 6px;
+    border-radius: 14px;
+  }
+
+  .fullscreen-btn i {
+    font-size: 24px;
+  }
+}
+
+/* Evita que tocar el video voltee la tarjeta */
+.youtube-player,
+.video-container,
+.fullscreen-btn {
+  pointer-events: auto !important;
+}
+
+.card-back {
+  pointer-events: auto !important;
 }

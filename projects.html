@@ -236,7 +236,9 @@
           if (
             e &&
             (e.target.closest(".play-overlay") ||
-              e.target.closest(".youtube-player"))
+              e.target.closest(".youtube-player") ||
+              e.target.closest(".video-container") ||
+              e.target.closest(".fullscreen-btn"))
           ) {
             return;
           }
