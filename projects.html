@@ -51,13 +51,14 @@
                   <div class="card-back">
                     <div class="video-container">
                       <iframe
-                        data-src="https://www.youtube.com/embed/qk_3SwXmpGM?rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                        src="https://www.youtube.com/embed/qk_3SwXmpGM?rel=0&modestbranding=1&playsinline=1&autoplay=0&mute=0&enablejsapi=1"
                         title="YouTube video player"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen
                         loading="lazy"
-                      ></iframe>
+                      >
+                      </iframe>
                     </div>
                     <div class="skill-description">
                       Aplicación web para visualizar imágenes médicas.
@@ -90,7 +91,6 @@
         const gap = 20;
         const cardWidth = cards[0].offsetWidth;
         const moveAmount = cardWidth + gap;
-
         track.style.transform = `translateX(${-index * moveAmount}px)`;
 
         prevButton.classList.toggle("disabled", index === 0);
@@ -107,14 +107,6 @@
         return 3;
       }
 
-      // Cargar videos solo cuando sean necesarios
-      function loadYouTubeVideo(iframe) {
-        const dataSrc = iframe.getAttribute("data-src");
-        if (dataSrc && !iframe.src) {
-          iframe.src = dataSrc;
-        }
-      }
-
       nextButton.addEventListener("click", () => {
         if (index < cards.length - getCardsToShow()) {
           index++;
@@ -129,45 +121,79 @@
         }
       });
 
-      cards.forEach((card) => {
-        const iframe = card.querySelector("iframe");
+      // === FLIP DE TARJETAS MEJORADO PARA MÓVIL ===
+      let touchStartTime = 0;
+      let isTouchingVideo = false;
 
+      cards.forEach((card) => {
         const flipCard = () => {
+          // Solo voltear si no estamos tocando el video
+          if (isTouchingVideo) {
+            isTouchingVideo = false;
+            return;
+          }
+
           cards.forEach((c) => c !== card && c.classList.remove("flipped"));
           card.classList.toggle("flipped");
-
-          // Cargar video cuando se voltea
-          if (card.classList.contains("flipped") && iframe) {
-            setTimeout(() => loadYouTubeVideo(iframe), 300);
-          }
         };
 
-        // Flip normal (PC)
+        // Click normal (escritorio)
         card.addEventListener("click", (e) => {
-          // si tocó el iframe → NO voltear
-          if (e.target === iframe) return;
+          // Si el click viene del iframe o su contenedor, ignorar
+          if (
+            e.target.closest("iframe") ||
+            e.target.closest(".video-container")
+          ) {
+            return;
+          }
           flipCard();
         });
 
-        // Flip en móvil
+        // Touch en móvil
+        card.addEventListener("touchend", (e) => {
+          const touch = e.changedTouches[0];
+          const now = Date.now();
+
+          // Si fue un toque rápido y no sobre el video
+          if (now - touchStartTime < 500) {
+            if (
+              !e.target.closest("iframe") &&
+              !e.target.closest(".video-container")
+            ) {
+              e.preventDefault(); // evita scroll accidental
+              flipCard();
+            }
+          }
+        });
+
         card.addEventListener("touchstart", (e) => {
-          // si el toque está dentro del iframe → NO voltear
-          if (e.target === iframe) return;
-          flipCard();
+          touchStartTime = Date.now();
+          if (
+            e.target.closest("iframe") ||
+            e.target.closest(".video-container")
+          ) {
+            isTouchingVideo = true;
+          }
         });
 
-        // Evitar que iframe "transmita" eventos hacia la tarjeta
+        // Detectar si se toca el video (incluso si está dentro del iframe)
+        const iframe = card.querySelector("iframe");
         if (iframe) {
-          iframe.addEventListener("touchstart", (e) => {
-            e.stopPropagation();
+          iframe.addEventListener("touchstart", () => {
+            isTouchingVideo = true;
           });
-          iframe.addEventListener("touchend", (e) => {
-            e.stopPropagation();
-          });
-          iframe.addEventListener("click", (e) => {
-            e.stopPropagation();
+
+          // Para mayor seguridad: si se toca cualquier parte del contenedor del video
+          iframe.parentElement.addEventListener("touchstart", (e) => {
+            isTouchingVideo = true;
           });
         }
+      });
+
+      // Resetear al cambiar tamaño
+      window.addEventListener("resize", () => {
+        index = Math.max(0, Math.min(index, cards.length - getCardsToShow()));
+        updateCarousel();
       });
 
       updateCarousel();

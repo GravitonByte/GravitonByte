@@ -381,5 +381,14 @@ footer {
   width: 100%;
   height: 100%;
   border: none;
-  pointer-events: auto;
+  pointer-events: auto !important;
+  touch-action: pan-y pinch-zoom; /* permite gestos normales dentro del video */
+}
+
+/* Mejora visual cuando la tarjeta está volteada en móvil */
+@media (max-width: 768px) {
+  .card.flipped {
+    transform: scale(1.02); /* pequeño zoom para feedback táctil */
+    z-index: 10;
+  }
 }
