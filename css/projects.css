@@ -385,10 +385,43 @@ footer {
   touch-action: pan-y pinch-zoom; /* permite gestos normales dentro del video */
 }
 
-/* Mejora visual cuando la tarjeta está volteada en móvil */
-@media (max-width: 768px) {
-  .card.flipped {
-    transform: scale(1.02); /* pequeño zoom para feedback táctil */
-    z-index: 10;
+/* Botón de pantalla completa personalizado */
+.fullscreen-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.fullscreen-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: #44da31;
+  transform: scale(1.1);
+}
+
+.fullscreen-btn:active {
+  transform: scale(0.95);
+}
+
+.fullscreen-btn i {
+  color: white;
+  font-size: 18px;
+}
+
+/* Ocultar botón en desktop (YouTube ya lo tiene) */
+@media (min-width: 769px) {
+  .fullscreen-btn {
+    display: none;
   }
 }
