@@ -142,3 +142,109 @@ window.addEventListener("resize", () => {
 });
 
 updateCarousel();
+
+// Controles de video
+function initVideoControls() {
+  const videos = document.querySelectorAll('.video-container video');
+  
+  videos.forEach(video => {
+    const container = video.closest('.video-container');
+    const playOverlay = container.querySelector('.play-overlay');
+    const volumeBtn = container.querySelector('.volume-btn');
+    const volumeSlider = container.querySelector('.volume-slider');
+    const fullscreenBtn = container.querySelector('.fullscreen-btn');
+    const volumeIcon = volumeBtn.querySelector('i');
+
+    // Eventos de play/pause
+    video.addEventListener('play', function() {
+      playOverlay.classList.add('hidden');
+    });
+    
+    video.addEventListener('pause', function() {
+      playOverlay.classList.remove('hidden');
+    });
+    
+    video.addEventListener('ended', function() {
+      playOverlay.classList.remove('hidden');
+    });
+
+    // Control de volumen
+    volumeSlider.addEventListener('input', function() {
+      video.volume = this.value;
+      updateVolumeIcon(video.volume, volumeIcon);
+    });
+
+    volumeBtn.addEventListener('click', function() {
+      video.volume = video.volume === 0 ? 1 : 0;
+      volumeSlider.value = video.volume;
+      updateVolumeIcon(video.volume, volumeIcon);
+    });
+
+    // Pantalla completa
+    fullscreenBtn.addEventListener('click', function() {
+      toggleFullscreen(container);
+    });
+
+    // Actualizar icono de volumen al cargar
+    updateVolumeIcon(video.volume, volumeIcon);
+  });
+}
+
+function updateVolumeIcon(volume, icon) {
+  if (volume === 0) {
+    icon.className = 'fas fa-volume-mute';
+  } else if (volume < 0.5) {
+    icon.className = 'fas fa-volume-down';
+  } else {
+    icon.className = 'fas fa-volume-up';
+  }
+}
+
+function toggleFullscreen(element) {
+  if (!document.fullscreenElement) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
+}
+
+// Detección de cambio de orientación en pantalla completa
+window.addEventListener('orientationchange', function() {
+  if (document.fullscreenElement) {
+    // Aquí podríamos ajustar la interfaz si es necesario
+    // Por ejemplo, forzar el landscape o portrait, pero note: no podemos forzar la orientación.
+    // En su lugar, podemos ajustar estilos o notificar al usuario.
+    console.log('Orientación cambiada en pantalla completa');
+  }
+});
+
+// También escuchamos el cambio a pantalla completa para ajustar estilos si es necesario
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+function handleFullscreenChange() {
+  const isFullscreen = !!document.fullscreenElement;
+  // Podemos añadir una clase al body o al contenedor para ajustar estilos
+  document.body.classList.toggle('fullscreen-active', isFullscreen);
+}
+
+// Inicializar controles de video
+initVideoControls();

@@ -49,11 +49,31 @@
                   <div class="card-back">
                     <div class="video-container">
                       <video preload="metadata" playsinline>
-                        <source src="assets/video/video.mp4" type="video/mp4">
+                        <source src="assets/video/video.mp4" type="video/mp4" />
                         Tu navegador no soporta el elemento de video.
                       </video>
                       <div class="play-overlay">
                         <div class="play-button"></div>
+                      </div>
+                      <!-- Controles personalizados -->
+                      <div class="video-controls">
+                        <button class="volume-btn" title="Volumen">
+                          <i class="fas fa-volume-up"></i>
+                        </button>
+                        <input
+                          type="range"
+                          class="volume-slider"
+                          min="0"
+                          max="1"
+                          step="0.1"
+                          value="1"
+                        />
+                        <button
+                          class="fullscreen-btn"
+                          title="Pantalla completa"
+                        >
+                          <i class="fas fa-expand"></i>
+                        </button>
                       </div>
                     </div>
                     <div class="skill-description">
@@ -77,7 +97,10 @@
                   <div class="card-back">
                     <div class="video-container">
                       <video preload="metadata" playsinline>
-                        <source src="assets/video/video2.mp4" type="video/mp4">
+                        <source
+                          src="assets/video/video2.mp4"
+                          type="video/mp4"
+                        />
                         Tu navegador no soporta el elemento de video.
                       </video>
                       <div class="play-overlay">
@@ -105,7 +128,10 @@
                   <div class="card-back">
                     <div class="video-container">
                       <video preload="metadata" playsinline>
-                        <source src="assets/video/video3.mp4" type="video/mp4">
+                        <source
+                          src="assets/video/video3.mp4"
+                          type="video/mp4"
+                        />
                         Tu navegador no soporta el elemento de video.
                       </video>
                       <div class="play-overlay">
