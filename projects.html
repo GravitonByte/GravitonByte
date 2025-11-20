@@ -45,29 +45,22 @@
                   <div class="card-front">
                     <div class="card-title">Visor médico</div>
                     <div class="card-image">
-                      <img src="assets/icons/icon-html.png" alt="HTML" />
+                      <img src="assets/icons/icon-rx.png" alt="HTML" />
                     </div>
                   </div>
                   <div class="card-back">
-                    <div class="progress-container">
-                      <svg class="progress-svg" viewBox="0 0 100 100">
-                        <circle
-                          class="progress-circle-bg"
-                          cx="50"
-                          cy="50"
-                          r="40"
-                        />
-                        <circle
-                          class="progress-circle"
-                          cx="50"
-                          cy="50"
-                          r="40"
-                        />
-                      </svg>
-                      <div class="progress-text">100%</div>
+                    <div class="video-container">
+                      <iframe
+                        data-src="https://www.youtube.com/embed/qk_3SwXmpGM?rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy"
+                      ></iframe>
                     </div>
                     <div class="skill-description">
-                      Aplicación web para visualizar imagenes médicas.
+                      Aplicación web para visualizar imágenes médicas.
                     </div>
                   </div>
                 </div>
@@ -93,7 +86,6 @@
       const nextButton = document.querySelector(".next");
       let index = 0;
 
-      // Función para actualizar carrusel
       function updateCarousel() {
         const gap = 20;
         const cardWidth = cards[0].offsetWidth;
@@ -108,7 +100,6 @@
         );
       }
 
-      // Cuántas tarjetas mostrar según el tamaño de pantalla real
       function getCardsToShow() {
         const w = window.innerWidth;
         if (w <= 768) return 1;
@@ -116,7 +107,14 @@
         return 3;
       }
 
-      // Botón siguiente
+      // Cargar videos solo cuando sean necesarios
+      function loadYouTubeVideo(iframe) {
+        const dataSrc = iframe.getAttribute("data-src");
+        if (dataSrc && !iframe.src) {
+          iframe.src = dataSrc;
+        }
+      }
+
       nextButton.addEventListener("click", () => {
         if (index < cards.length - getCardsToShow()) {
           index++;
@@ -124,7 +122,6 @@
         }
       });
 
-      // Botón anterior
       prevButton.addEventListener("click", () => {
         if (index > 0) {
           index--;
@@ -132,50 +129,41 @@
         }
       });
 
-      // Flip cards y animar progreso
+      // Flip de tarjetas mejorado
       cards.forEach((card) => {
         const flipCard = () => {
           cards.forEach((c) => c !== card && c.classList.remove("flipped"));
           card.classList.toggle("flipped");
 
+          // Cargar el video cuando la tarjeta se voltea
           if (card.classList.contains("flipped")) {
-            const skillLevel = parseInt(card.getAttribute("data-skill"));
-            const progressCircle = card.querySelector(".progress-circle");
-            const circumference = 40 * 2 * Math.PI;
-            const offset = circumference - (skillLevel / 100) * circumference;
-
-            setTimeout(() => {
-              progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-              progressCircle.style.strokeDashoffset = offset;
-
-              if (skillLevel <= 30) {
-                progressCircle.style.stroke = "#ff6b6b";
-              } else if (skillLevel <= 60) {
-                progressCircle.style.stroke = "#feca57";
-              } else {
-                progressCircle.style.stroke = "#44da31";
-              }
-            }, 100);
+            const iframe = card.querySelector("iframe");
+            if (iframe) {
+              setTimeout(() => loadYouTubeVideo(iframe), 300);
+            }
           }
         };
 
-        // Click en desktop
         card.addEventListener("click", flipCard);
 
-        // Tocarlo en móviles sin bloquear scroll vertical
         card.addEventListener("touchend", (e) => {
           e.preventDefault();
           flipCard();
         });
       });
 
-      // Recalcular posiciones al redimensionar pantalla
       window.addEventListener("resize", () => {
-        index = 0; // Evita quedar fuera de rango tras resize
+        index = 0;
         updateCarousel();
       });
 
-      // Inicialización
+      // Prevenir que los clics en el iframe vuelteen la tarjeta
+      document.querySelectorAll("iframe").forEach((frame) => {
+        frame.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+      });
+
       updateCarousel();
     </script>
   </body>
