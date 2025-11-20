@@ -95,7 +95,6 @@ nav a.active {
   overflow: hidden;
 }
 
-/* ====== CONTENEDOR PRINCIPAL ====== */
 .home-content {
   width: 100%;
   max-width: 1400px;
@@ -120,7 +119,7 @@ nav a.active {
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  max-width:  max-width: 1000px;
   overflow: hidden;
   border-radius: 20px;
 }
@@ -167,8 +166,6 @@ nav a.active {
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -179,27 +176,72 @@ nav a.active {
 
 .card-front {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06));
+  justify-content: center;
+  align-items: center;
 }
 
+/* ====== CARD-BACK: AHORA CON VIDEO GRANDE Y BONITO ====== */
 .card-back {
   transform: rotateY(180deg);
-  line-height: 1.5;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  padding: 18px;
+  gap: 14px;
+  justify-content: flex-start;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-/* ====== CONTENIDO DE TARJETA ====== */
+/* Título arriba */
+.card-back > .card-title {
+  font-size: clamp(1.4rem, 2.2vw, 2.4rem);
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* VIDEO: ocupa TODO el espacio disponible */
+.card-back .video-container {
+  position: relative;
+  flex: 1;                     /* CRECE AL MÁXIMO */
+  min-height: 180px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.card-back .video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* muestra el video completo sin recortar */
+  /* object-fit: cover; */ /* descomenta esta línea si prefieres efecto cinematográfico */
+  display: block;
+  border-radius: 16px;
+}
+
+/* Descripción abajo */
+.card-back .skill-description {
+  font-size: clamp(1rem, 1.6vw, 1.8rem);
+  line-height: 1.5;
+  padding: 8px 10px 0;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* ====== FRONT (sin cambios importantes) ====== */
 .card-title {
   font-size: 1vw;
   margin-bottom: 15px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .card-image {
@@ -207,8 +249,6 @@ nav a.active {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
-  height: 130px;
 }
 
 .card-image img {
@@ -218,11 +258,7 @@ nav a.active {
   filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.6));
 }
 
-.card-back {
-  font-size: 0.8vw;
-}
-
-/* ====== BOTONES DE NAVEGACIÓN ====== */
+/* ====== BOTONES CARRUSEL ====== */
 .nav-btn {
   width: 50px;
   height: 50px;
@@ -236,18 +272,9 @@ nav a.active {
   transition: transform 0.3s ease;
 }
 
-.nav-btn:hover {
-  transform: scale(1.2);
-}
-
-.nav-btn:active {
-  transform: scale(0.95);
-}
-
-.nav-btn.disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
+.nav-btn:hover { transform: scale(1.2); }
+.nav-btn:active { transform: scale(0.95); }
+.nav-btn.disabled { opacity: 0.3; cursor: not-allowed; }
 
 /* ====== FOOTER ====== */
 footer {
@@ -259,227 +286,7 @@ footer {
   flex-shrink: 0;
 }
 
-.skill-description {
-  font-size: 0.8vw;
-  line-height: 1.5;
-  padding: 0 10px;
-  margin-top: 10px;
-}
-
-/* ===== VIDEO LOCAL DENTRO DE TARJETA ===== */
-.video-container {
-  position: relative;
-  width: 100%;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 15px;
-  background: #000;
-}
-
-.video-container video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 15px;
-}
-
-/* Overlay de reproducción */
-.play-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: opacity 0.3s ease;
-}
-
-.play-overlay.hidden {
-  display: none;
-}
-
-.play-button {
-  width: 60px;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
-
-.play-button::before {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 20px solid white;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  margin-left: 4px;
-}
-
-.play-overlay:hover .play-button {
-  transform: scale(1.1);
-}
-
-/* ====== MEJORAS ESPECÍFICAS PARA MÓVILES ====== */
-@media (max-width: 768px) {
-  nav a {
-    font-size: 10px;
-  }
-
-  .carousel-container {
-    gap: 15px;
-    padding: 0 10px;
-  }
-
-  .carousel {
-    max-width: 100%;
-  }
-
-  /* tarjetas apilan en móvil (1 por fila) */
-  .card {
-    flex: 0 0 100%;
-    min-width: 220px;
-  }
-
-  .card-title {
-    font-size: 3vw;
-  }
-
-  .card-back {
-    font-size: 1.6vw;
-  }
-
-  .nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .skill-description {
-    font-size: 1.6vw;
-  }
-
-  /* MEJORAS ESPECÍFICAS PARA VIDEO EN MÓVIL */
-  .card-back {
-    padding: 10px;
-    justify-content: flex-start;
-  }
-
-  .video-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 50% !important;
-    height: auto !important;
-    margin-bottom: 0;
-    z-index: 5;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .video-container video {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  .play-overlay {
-    display: flex;
-  }
-
-  .play-button {
-    width: 40px;
-    height: 40px;
-  }
-
-  .play-button::before {
-    border-left: 12px solid white;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    margin-left: 3px;
-  }
-
-  .skill-description {
-    margin-top: 0;
-    padding-top: 10px;
-    font-size: 2vw;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: calc(100% - 20px);
-    text-align: left;
-  }
-}
-
-@media (max-width: 480px) {
-  nav a {
-    font-size: 10.5px;
-  }
-
-  .card {
-    min-width: 180px;
-  }
-
-  .video-container {
-    width: 45% !important;
-  }
-
-  .skill-description {
-    font-size: 2.2vw;
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .home {
-    padding: 10px;
-    align-items: flex-start;
-  }
-
-  /* en landscape de móvil permitimos mostrar 3 columnas si hay espacio */
-  .card {
-    flex: 0 0 calc(33.333% - 14px);
-    min-width: 160px;
-  }
-
-  .video-container {
-    width: 40% !important;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1400px) {
-  .carousel {
-    max-width: 900px;
-  }
-
-  .card {
-    min-width: 200px;
-  }
-
-  .card-title {
-    font-size: 1.1vw;
-  }
-
-  .card-back {
-    font-size: 0.9vw;
-  }
-}
-
-@media (min-width: 1400px) {
-  .carousel {
-    max-width: 1200px;
-  }
-}
-
-/* ===== CONTROLES DE VIDEO ===== */
+/* ====== CONTROLES DE VIDEO (sin cambios) ====== */
 .video-controls {
   position: absolute;
   bottom: 10px;
@@ -495,9 +302,7 @@ footer {
   z-index: 20;
 }
 
-.video-container:hover .video-controls {
-  opacity: 1;
-}
+.video-container:hover .video-controls { opacity: 1; }
 
 .volume-btn, .fullscreen-btn {
   background: rgba(255, 255, 255, 0.7);
@@ -513,7 +318,7 @@ footer {
 }
 
 .volume-btn:hover, .fullscreen-btn:hover {
-  background: rgb(255, 255, 255, 0.7);
+  background: rgb(255, 255, 255, 0.9);
   transform: scale(1.1);
 }
 
@@ -533,34 +338,82 @@ footer {
   width: 100px;
 }
 
-/* En móviles, ocultamos el control de volumen */
+/* ====== RESPONSIVE (mejorado) ====== */
 @media (max-width: 768px) {
-  .volume-btn, .volume-slider {
-    display: none;
+  nav a { font-size: 10px; }
+
+  .carousel-container { gap: 15px; padding: 0 10px; }
+  .carousel { max-width: 100%; }
+
+  .card {
+    flex: 0 0 100%;
+    min-width: 240px;
+  }
+
+  .card-title { font-size: 3.2vw; }
+  .card-back .card-title { font-size: 2.4rem; }
+  .skill-description { font-size: 2rem; }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  /* EN MÓVIL: video grande y centrado (nada de esquina) */
+  .card-back {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .card-back .video-container {
+    min-height: 200px;
+    border-radius: 14px;
+  }
+
+  .play-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .play-button::before {
+    border-left: 12px solid white;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
   }
 }
 
-/* Ajustes para pantalla completa */
-.video-container:-webkit-full-screen {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
+@media (max-width: 480px) {
+  .card { min-width: 200px; }
+  .card-back .video-container { min-height: 170px; }
 }
 
-.video-container:-moz-full-screen {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
+@media (max-width: 768px) and (orientation: landscape) {
+  .card { flex: 0 0 calc(33.333% - 14px); min-width: 160px; }
 }
 
-.video-container:-ms-fullscreen {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
+/* Pantallas grandes */
+@media (min-width: 769px) and (max-width: 1400px) {
+  .carousel { max-width: 900px; }
+  .card { min-width: 200px; }
 }
 
+@media (min-width: 1400px) {
+  .carousel { max-width: 1200px; }
+}
+
+/* Pantalla completa */
+.video-container:-webkit-full-screen,
+.video-container:-moz-full-screen,
+.video-container:-ms-fullscreen,
 .video-container:fullscreen {
   width: 100%;
   height: 100%;
   border-radius: 0;
+}
+
+/* Ocultar volumen en móvil */
+@media (max-width: 768px) {
+  .volume-btn, .volume-slider { display: none; }
 }
