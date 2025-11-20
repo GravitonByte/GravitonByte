@@ -129,39 +129,45 @@
         }
       });
 
-      // Flip de tarjetas mejorado
       cards.forEach((card) => {
+        const iframe = card.querySelector("iframe");
+
         const flipCard = () => {
           cards.forEach((c) => c !== card && c.classList.remove("flipped"));
           card.classList.toggle("flipped");
 
-          // Cargar el video cuando la tarjeta se voltea
-          if (card.classList.contains("flipped")) {
-            const iframe = card.querySelector("iframe");
-            if (iframe) {
-              setTimeout(() => loadYouTubeVideo(iframe), 300);
-            }
+          // Cargar video cuando se voltea
+          if (card.classList.contains("flipped") && iframe) {
+            setTimeout(() => loadYouTubeVideo(iframe), 300);
           }
         };
 
-        card.addEventListener("click", flipCard);
-
-        card.addEventListener("touchend", (e) => {
-          e.preventDefault();
+        // Flip normal (PC)
+        card.addEventListener("click", (e) => {
+          // si tocó el iframe → NO voltear
+          if (e.target === iframe) return;
           flipCard();
         });
-      });
 
-      window.addEventListener("resize", () => {
-        index = 0;
-        updateCarousel();
-      });
-
-      // Prevenir que los clics en el iframe vuelteen la tarjeta
-      document.querySelectorAll("iframe").forEach((frame) => {
-        frame.addEventListener("click", (e) => {
-          e.stopPropagation();
+        // Flip en móvil
+        card.addEventListener("touchstart", (e) => {
+          // si el toque está dentro del iframe → NO voltear
+          if (e.target === iframe) return;
+          flipCard();
         });
+
+        // Evitar que iframe "transmita" eventos hacia la tarjeta
+        if (iframe) {
+          iframe.addEventListener("touchstart", (e) => {
+            e.stopPropagation();
+          });
+          iframe.addEventListener("touchend", (e) => {
+            e.stopPropagation();
+          });
+          iframe.addEventListener("click", (e) => {
+            e.stopPropagation();
+          });
+        }
       });
 
       updateCarousel();

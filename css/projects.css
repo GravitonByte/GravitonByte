@@ -221,7 +221,7 @@ nav a.active {
   max-width: 130px;
   max-height: 130px;
   object-fit: contain;
-  filter: drop-shadow(0 0 1.5px rgba(255,255,255,0.6));
+  filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.6));
 }
 
 .card-back {
