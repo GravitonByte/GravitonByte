@@ -164,48 +164,6 @@
         });
       });
 
-      // Versión simplificada - desactiva flip en móvil cuando el video está visible
-      cards.forEach((card) => {
-        const flipCard = () => {
-          cards.forEach((c) => c !== card && c.classList.remove("flipped"));
-          card.classList.toggle("flipped");
-
-          if (card.classList.contains("flipped")) {
-            const iframe = card.querySelector("iframe");
-            if (iframe) {
-              setTimeout(() => loadYouTubeVideo(iframe), 300);
-            }
-          }
-        };
-
-        // En móvil, solo permitir flip al tocar áreas específicas
-        card.addEventListener("click", (e) => {
-          if (window.innerWidth <= 768) {
-            // En móvil, no voltear si se toca el área del video
-            if (
-              e.target.closest(".card-back") ||
-              e.target.closest(".video-container")
-            ) {
-              return;
-            }
-          }
-          flipCard();
-        });
-
-        card.addEventListener("touchend", (e) => {
-          if (window.innerWidth <= 768) {
-            if (
-              e.target.closest(".card-back") ||
-              e.target.closest(".video-container")
-            ) {
-              return;
-            }
-            e.preventDefault();
-            flipCard();
-          }
-        });
-      });
-
       updateCarousel();
     </script>
   </body>
