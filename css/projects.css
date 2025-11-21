@@ -515,9 +515,31 @@ footer {
     width: 100%;
   }
   
-  /* Ocultar controles de volumen en móviles */
+  /* CONTROLES DE VIDEO EN MÓVILES - CORREGIDOS */
+  .video-controls {
+    opacity: 1; /* Siempre visibles en móviles */
+    bottom: 5px;
+    padding: 0 8px;
+  }
+  
   .volume-controls {
-    display: none;
+    display: flex; /* Mostramos controles de volumen en móviles */
+  }
+  
+  .volume-btn, .fullscreen-btn {
+    width: 28px; /* Tamaño reducido para móviles */
+    height: 28px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .volume-slider {
+    width: 60px; /* Slider más pequeño para móviles */
+    opacity: 1; /* Siempre visible en móviles */
+  }
+  
+  .volume-controls:hover .volume-slider {
+    width: 60px; /* Mantener tamaño en móviles */
   }
 }
 
@@ -533,6 +555,26 @@ footer {
   .skill-description {
     font-size: 2.2vw;
   }
+  
+  /* Ajustes adicionales para pantallas muy pequeñas */
+  .video-controls {
+    bottom: 3px;
+    padding: 0 5px;
+  }
+  
+  .volume-btn, .fullscreen-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 10px;
+  }
+  
+  .volume-slider {
+    width: 50px;
+  }
+  
+  .volume-controls:hover .volume-slider {
+    width: 50px;
+  }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
@@ -545,6 +587,10 @@ footer {
   .card {
     flex: 0 0 calc(33.333% - 14px);
     min-width: 160px;
+  }
+  
+  .video-container {
+    height: 60%; /* Más alto en landscape */
   }
 }
 
