@@ -133,11 +133,6 @@ nav a.active {
   align-items: flex-start;
 }
 
-/* Centrar cuando solo hay una tarjeta */
-.carousel-track.single-card {
-  justify-content: center;
-}
-
 /* ====== TARJETAS ====== */
 .card {
   position: relative;
@@ -477,6 +472,11 @@ footer {
     font-size: 1.6vw;
   }
 
+  /* En móvil, el track siempre empieza desde la izquierda */
+  .carousel-track {
+    justify-content: flex-start;
+  }
+
   /* MEJORAS ESPECÍFICAS PARA VIDEO EN MÓVIL */
   .video-container {
     position: relative;
@@ -597,6 +597,14 @@ footer {
   
   .video-container {
     height: 60%; /* Más alto en landscape */
+  }
+}
+
+/* ===== COMPORTAMIENTO EN PC ===== */
+@media (min-width: 769px) {
+  /* En PC, cuando hay una sola tarjeta, la centramos */
+  .carousel-track.single-card {
+    justify-content: center;
   }
 }
 
