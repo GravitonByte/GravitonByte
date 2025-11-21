@@ -133,6 +133,11 @@ nav a.active {
   align-items: flex-start;
 }
 
+/* Centrar cuando solo hay una tarjeta */
+.carousel-track.single-card {
+  justify-content: center;
+}
+
 /* ====== TARJETAS ====== */
 .card {
   position: relative;
@@ -378,6 +383,7 @@ footer {
   outline: none;
   opacity: 0;
   transition: opacity 0.3s ease, width 0.3s ease;
+  cursor: pointer;
 }
 
 .volume-controls:hover .volume-slider {

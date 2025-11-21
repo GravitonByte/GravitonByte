@@ -9,7 +9,13 @@ function updateCarousel() {
   const gap = 20;
   const cardWidth = cards[0].offsetWidth;
   const moveAmount = cardWidth + gap;
-  track.style.transform = `translateX(${-index * moveAmount}px)`;
+  
+  // Centrar cuando solo hay una tarjeta
+  if (cards.length === 1) {
+    track.style.transform = `translateX(${moveAmount}px)`;
+  } else {
+    track.style.transform = `translateX(${-index * moveAmount}px)`;
+  }
 
   prevButton.classList.toggle("disabled", index === 0);
   nextButton.classList.toggle(
@@ -170,20 +176,31 @@ function initVideoControls() {
       playOverlay.classList.remove('hidden');
     });
 
-    // Control de volumen
-    volumeSlider.addEventListener('input', function() {
+    // Control de volumen - Corregido para no pausar el video
+    volumeSlider.addEventListener('input', function(e) {
+      e.stopPropagation();
       video.volume = this.value;
       updateVolumeIcon(video.volume, volumeIcon);
     });
 
-    volumeBtn.addEventListener('click', function() {
+    volumeSlider.addEventListener('mousedown', function(e) {
+      e.stopPropagation();
+    });
+
+    volumeSlider.addEventListener('touchstart', function(e) {
+      e.stopPropagation();
+    });
+
+    volumeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
       video.volume = video.volume === 0 ? 1 : 0;
       volumeSlider.value = video.volume;
       updateVolumeIcon(video.volume, volumeIcon);
     });
 
     // Pantalla completa
-    fullscreenBtn.addEventListener('click', function() {
+    fullscreenBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
       toggleFullscreen(container);
     });
 
@@ -229,7 +246,6 @@ function toggleFullscreen(element) {
 // Detección de cambio de orientación en pantalla completa
 window.addEventListener('orientationchange', function() {
   if (document.fullscreenElement) {
-    // Aquí podríamos ajustar la interfaz si es necesario
     console.log('Orientación cambiada en pantalla completa');
   }
 });
@@ -242,7 +258,6 @@ document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 
 function handleFullscreenChange() {
   const isFullscreen = !!document.fullscreenElement;
-  // Podemos añadir una clase al body o al contenedor para ajustar estilos
   document.body.classList.toggle('fullscreen-active', isFullscreen);
 }
 
