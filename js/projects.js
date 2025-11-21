@@ -85,7 +85,8 @@ cards.forEach((card) => {
       e &&
       (e.target.closest(".play-overlay") ||
         e.target.closest("video") ||
-        e.target.closest(".video-container"))
+        e.target.closest(".video-container") ||
+        e.target.closest(".video-controls"))
     ) {
       return;
     }
@@ -123,7 +124,8 @@ cards.forEach((card) => {
       if (
         !e.target.closest(".play-overlay") &&
         !e.target.closest("video") &&
-        !e.target.closest(".video-container")
+        !e.target.closest(".video-container") &&
+        !e.target.closest(".video-controls")
       ) {
         e.preventDefault();
         flipCard(e);
@@ -228,8 +230,6 @@ function toggleFullscreen(element) {
 window.addEventListener('orientationchange', function() {
   if (document.fullscreenElement) {
     // Aquí podríamos ajustar la interfaz si es necesario
-    // Por ejemplo, forzar el landscape o portrait, pero note: no podemos forzar la orientación.
-    // En su lugar, podemos ajustar estilos o notificar al usuario.
     console.log('Orientación cambiada en pantalla completa');
   }
 });
