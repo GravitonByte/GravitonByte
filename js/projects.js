@@ -10,8 +10,8 @@ function updateCarousel() {
   const cardWidth = cards[0].offsetWidth;
   const moveAmount = cardWidth + gap;
   
-  // Centrar cuando solo hay una tarjeta
-  if (cards.length === 1) {
+  // Centrar solo en PC cuando hay una tarjeta
+  if (cards.length === 1 && window.innerWidth > 768) {
     track.style.transform = `translateX(${moveAmount}px)`;
   } else {
     track.style.transform = `translateX(${-index * moveAmount}px)`;
