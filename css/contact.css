@@ -1,120 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 /* ====== RESETEO Y BASE ====== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  font-family: "Press Start 2P", cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
 }
 
 html,
 body {
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 html {
-  font-size: 62.5%;
+    font-size: 62.5%; /* 1rem = 10px */
 }
 
-/* ====== BODY ====== */
 body {
-  background: #0a0a0a;
-  color: white;
-  width: 100%;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  overscroll-behavior: none;
+    font-family: "Press Start 2P", cursive;
+    background: #0a0a0a;
+    color: white;
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
-/* ====== CANVAS DE FONDO ====== */
-#space {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100dvw;
-  height: 100dvh;
-  background: #000;
-  z-index: -1;
-  overflow: hidden;
+/* ====== CANVAS DE FONDO (Warp) ====== */
+#warpCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: -1;
+    background: black;
+    overflow: hidden;
 }
 
 /* ====== HEADER Y NAVEGACIÓN ====== */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  width: 100%;
-  z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    z-index: 10;
 }
 
 nav {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
 }
 
 nav a {
-  color: inherit;
-  text-decoration: none;
-  font-size: 12px;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
+    color: white;
+    font-size: 12px;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 nav a:hover,
 nav a.active {
-  color: #44da31;
-  border-bottom: 2px solid #44da31;
+    color: #44da31;
+    border-bottom: 2px solid #44da31;
 }
 
-/* ====== SECCIÓN PRINCIPAL ====== */
+/* ====== HOME SECTION ====== */
 .home {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  width: 100%;
-  overflow: hidden;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    padding: 2rem 9%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Títulos y texto */
+.home-content h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-content h3 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.home-content p {
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+span {
+    color: #44da31;
+}
+
+/* Imagen */
+.home-img img {
+    width: 32vw;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #44da31;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.home-img img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 25px #44da31;
+}
+
+/* Animación de texto tipeado */
+.typing-text {
+    font-size: 3.4rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.typing-text span::before {
+    content: "Desarrollador Web.";
+    color: #44da31;
+    animation: words 20s infinite;
+}
+
+.typing-text span::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    border-left: 3px solid #44da31;
+    right: -8px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes words {
+    0%, 20%   { content: "Desarrollador Web."; }
+    21%, 40%  { content: "Diseñador Web."; }
+    41%, 60%  { content: "Analista de Sistemas."; }
+    61%, 80%  { content: "Técnico."; }
+    81%, 100% { content: "Ingeniero."; }
 }
 
 /* ====== FOOTER ====== */
 footer {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  text-align: center;
-  font-size: 10px;
-  width: 100%;
-  flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    font-size: 10px;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 /* ====== RESPONSIVE ====== */
+@media (max-width: 995px) {
+    .home {
+        flex-direction: column;
+        text-align: center;
+    }
+    .home-img img { 
+        width: 58vw;
+        max-width: 350px;
+    }
+    .home-content h1 { font-size: 3.5rem; }
+    .home-content h3 { font-size: 2.5rem; }
+    .typing-text { font-size: 2.5rem; }
+}
+
 @media (max-width: 768px) {
-  nav a {
-    font-size: 10px;
-    /* padding: 0.5rem 0.7rem; */
-  }
+    nav a {
+        font-size: 10px;
+    }
+    .home {
+        gap: 2rem;
+        padding: 1rem 4%;
+    }
+    .home-img img { 
+        width: 55vw;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+        nav a {
+        font-size: 10px;
+    }
+    .home-content h1 { font-size: 3rem; }
+    .home-content h3 { font-size: 2rem; }
+    .typing-text { font-size: 2rem; }
+    .home-img img { 
+        width: 52vw;
+        max-width: 270px;
+    }
 }
 
 @media (max-width: 480px) {
-  nav a {
-    font-size: 10.5px;
-  }
+    nav a { 
+        font-size: 10.5px;
+    }
+    .home-content h1 { font-size: 3rem; }
+    .home-content h3 { font-size: 2rem; }
+    .home-content p { font-size: 1.5rem; }
+    .typing-text { font-size: 2rem; }
+    .home-img img { 
+        width: 48vw;
+        max-width: 230px;
+    }
+}
+
+@media (max-width: 380px) {
+        nav a { 
+        font-size: 10.5px;
+    }
+    .home-content h1 { font-size: 3rem; }
+    .home-content h3 { font-size: 2rem; }
+    .typing-text { font-size: 2rem; }
+    .home-img img { 
+        width: 45vw;
+        max-width: 200px;
+    }
 }
