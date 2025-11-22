@@ -492,7 +492,8 @@ footer {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    object-fit: cover;
+    object-fit: contain; /* Cambiado de cover a contain para ver video completo */
+    background: #000;
   }
 
   .play-overlay {
@@ -521,31 +522,28 @@ footer {
     width: 100%;
   }
   
-  /* CONTROLES DE VIDEO EN MÓVILES - CORREGIDOS */
+  /* CONTROLES DE VIDEO EN MÓVILES - OCULTAR VOLUMEN */
   .video-controls {
     opacity: 1; /* Siempre visibles en móviles */
     bottom: 5px;
     padding: 0 8px;
+    justify-content: flex-end; /* Alinea controles a la derecha */
   }
   
+  /* OCULTAR COMPLETAMENTE LOS CONTROLES DE VOLUMEN EN MÓVIL */
   .volume-controls {
-    display: flex; /* Mostramos controles de volumen en móviles */
+    display: none !important; /* Ocultar volumen en móviles */
   }
   
-  .volume-btn, .fullscreen-btn {
+  .volume-btn, .volume-slider {
+    display: none !important; /* Ocultar elementos de volumen */
+  }
+  
+  .fullscreen-btn {
     width: 28px; /* Tamaño reducido para móviles */
     height: 28px;
     font-size: 12px;
     background: rgba(0, 0, 0, 0.8);
-  }
-  
-  .volume-slider {
-    width: 60px; /* Slider más pequeño para móviles */
-    opacity: 1; /* Siempre visible en móviles */
-  }
-  
-  .volume-controls:hover .volume-slider {
-    width: 60px; /* Mantener tamaño en móviles */
   }
 }
 
@@ -568,18 +566,10 @@ footer {
     padding: 0 5px;
   }
   
-  .volume-btn, .fullscreen-btn {
+  .fullscreen-btn {
     width: 25px;
     height: 25px;
     font-size: 10px;
-  }
-  
-  .volume-slider {
-    width: 50px;
-  }
-  
-  .volume-controls:hover .volume-slider {
-    width: 50px;
   }
 }
 

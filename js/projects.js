@@ -73,17 +73,21 @@ cards.forEach((card) => {
       video.play();
     });
     
-    // Pausar video al hacer clic en el contenedor (excepto en móviles)
-    if (window.innerWidth > 768) {
-      videoContainer.addEventListener("click", function(e) {
+    // Control de reproducción mejorado para todos los dispositivos
+    videoContainer.addEventListener("click", function(e) {
+      // En móviles, permitir que el overlay maneje la reproducción
+      if (window.innerWidth <= 768 && !video.paused) {
+        e.stopPropagation();
+        video.pause();
+      } else if (window.innerWidth > 768) {
         e.stopPropagation();
         if (video.paused) {
           video.play();
         } else {
           video.pause();
         }
-      });
-    }
+      }
+    });
   }
 
   const flipCard = (e) => {
@@ -147,6 +151,7 @@ cards.forEach((card) => {
 window.addEventListener("resize", () => {
   index = Math.max(0, Math.min(index, cards.length - getCardsToShow()));
   updateCarousel();
+  initVideoControls(); // Re-inicializar controles al cambiar tamaño
 });
 
 updateCarousel();
@@ -161,7 +166,7 @@ function initVideoControls() {
     const volumeBtn = container.querySelector('.volume-btn');
     const volumeSlider = container.querySelector('.volume-slider');
     const fullscreenBtn = container.querySelector('.fullscreen-btn');
-    const volumeIcon = volumeBtn.querySelector('i');
+    const volumeIcon = volumeBtn ? volumeBtn.querySelector('i') : null;
 
     // Eventos de play/pause
     video.addEventListener('play', function() {
@@ -176,36 +181,48 @@ function initVideoControls() {
       playOverlay.classList.remove('hidden');
     });
 
-    // Control de volumen - Corregido para no pausar el video
-    volumeSlider.addEventListener('input', function(e) {
-      e.stopPropagation();
-      video.volume = this.value;
-      updateVolumeIcon(video.volume, volumeIcon);
-    });
+    // En móviles: ocultar controles de volumen
+    if (window.innerWidth <= 768) {
+      if (volumeBtn) volumeBtn.style.display = 'none';
+      if (volumeSlider) volumeSlider.style.display = 'none';
+    } else {
+      // Control de volumen solo en desktop
+      if (volumeSlider) {
+        volumeSlider.addEventListener('input', function(e) {
+          e.stopPropagation();
+          video.volume = this.value;
+          updateVolumeIcon(video.volume, volumeIcon);
+        });
 
-    volumeSlider.addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    });
+        volumeSlider.addEventListener('mousedown', function(e) {
+          e.stopPropagation();
+        });
 
-    volumeSlider.addEventListener('touchstart', function(e) {
-      e.stopPropagation();
-    });
+        volumeSlider.addEventListener('touchstart', function(e) {
+          e.stopPropagation();
+        });
+      }
 
-    volumeBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      video.volume = video.volume === 0 ? 1 : 0;
-      volumeSlider.value = video.volume;
-      updateVolumeIcon(video.volume, volumeIcon);
-    });
+      if (volumeBtn) {
+        volumeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          video.volume = video.volume === 0 ? 1 : 0;
+          if (volumeSlider) volumeSlider.value = video.volume;
+          updateVolumeIcon(video.volume, volumeIcon);
+        });
+      }
+    }
 
-    // Pantalla completa
+    // Pantalla completa (funciona en móviles y desktop)
     fullscreenBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       toggleFullscreen(container);
     });
 
-    // Actualizar icono de volumen al cargar
-    updateVolumeIcon(video.volume, volumeIcon);
+    // Actualizar icono de volumen solo si existe (desktop)
+    if (volumeIcon && window.innerWidth > 768) {
+      updateVolumeIcon(video.volume, volumeIcon);
+    }
   });
 }
 
