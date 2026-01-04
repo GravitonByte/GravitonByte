@@ -625,3 +625,7 @@ footer {
     max-width: 1200px;
   }
 }
+
+.video-container.show-controls .video-controls {
+  opacity: 1;
+}

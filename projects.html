@@ -16,6 +16,11 @@
     />
     <!-- Estilos -->
     <link rel="stylesheet" href="css/projects.css" />
+
+    <!--VIDEOS-->
+
+    <link rel="preconnect" href="assets/video" />
+    <link rel="dns-prefetch" href="assets/video" />
   </head>
 
   <body>
@@ -48,9 +53,13 @@
                   </div>
                   <div class="card-back">
                     <div class="video-container">
-                      <video preload="metadata" playsinline>
+                      <video
+                        preload="none"
+                        playsinline
+                        muted
+                        data-preload="true"
+                      >
                         <source src="assets/video/video.mp4" type="video/mp4" />
-                        Tu navegador no soporta el elemento de video.
                       </video>
                       <div class="play-overlay">
                         <div class="play-button"></div>
@@ -80,7 +89,8 @@
                     </div>
                     <div class="skill-description-container">
                       <div class="skill-description">
-                        Aplicación web para visualizar imágenes médicas para celulares y PC.
+                        Aplicación web para visualizar imágenes médicas para
+                        celulares y PC.
                       </div>
                     </div>
                   </div>
